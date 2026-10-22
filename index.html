@@ -306,6 +306,7 @@ function analyze(chats, ids, year) {
       msgs.push({ m: m, ts: ts, d: d });
     }
     msgs.sort(function (a, b) { return a.ts - b.ts; });
+    if (msgs.length && !silence.from) silence.from = silence.to = msgs[0].ts;
     // Measure silence only between messages in this same chat, never across chats.
     for (var si = 1; si < msgs.length; si++) {
       var gap = msgs[si].ts - msgs[si - 1].ts;
