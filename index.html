@@ -11,19 +11,19 @@
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="application-name" content="TG Wrapped">
 <meta name="keywords" content="Telegram Wrapped, Telegram chat recap, Telegram stats, Telegram export analyzer, chat statistics, private chat analysis">
-<link rel="alternate" hreflang="en" href="https://chat-recap.pages.dev/">
-<link rel="alternate" hreflang="ar" href="https://chat-recap.pages.dev/ar/">
-<link rel="alternate" hreflang="es" href="https://chat-recap.pages.dev/es/">
-<link rel="alternate" hreflang="fr" href="https://chat-recap.pages.dev/fr/">
-<link rel="alternate" hreflang="pt" href="https://chat-recap.pages.dev/pt/">
-<link rel="alternate" hreflang="x-default" href="https://chat-recap.pages.dev/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TG Wrapped","applicationCategory":"UtilitiesApplication","operatingSystem":"Any device with a modern browser","url":"https://chat-recap.pages.dev/","description":"A free, private Telegram chat recap tool that analyzes a Telegram JSON export locally and creates shareable story cards.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Private in-browser Telegram export analysis","Message and emoji statistics","Shareable story cards","No account required","Chat data stays on your device"]}</script>
+<link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/">
+<link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/">
+<link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/">
+<link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/">
+<link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/">
+<link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TG Wrapped","applicationCategory":"UtilitiesApplication","operatingSystem":"Any device with a modern browser","url":"https://tgwrapped.devs.surf/","description":"A free, private Telegram chat recap tool that analyzes a Telegram JSON export locally and creates shareable story cards.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Private in-browser Telegram export analysis","Message and emoji statistics","Shareable story cards","No account required","Chat data stays on your device"]}</script>
 <title>Telegram Wrapped — Private Chat Recap & Story Cards | TG Wrapped</title>
 <meta name="description" content="Make a fun Telegram Wrapped from your chat export. See message stats, top words, emojis and shareable story cards. Free, private and processed in your browser.">
 <meta name="theme-color" content="#0b0f1a">
-<link rel="canonical" href="https://chat-recap.pages.dev/">
+<link rel="canonical" href="https://tgwrapped.devs.surf/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://chat-recap.pages.dev/">
+<meta property="og:url" content="https://tgwrapped.devs.surf/">
 <meta property="og:title" content="Telegram Wrapped — TG Wrapped">
 <meta property="og:description" content="Turn your Telegram chat export into fun, shareable story cards. Your file stays on your device.">
 <meta property="og:site_name" content="TG Wrapped">
@@ -289,7 +289,7 @@ function analyze(chats, ids, year) {
   var dayCounts = new Map(), words = new Map(), emojis = new Map();
   var media = { voice: 0, videoNote: 0, sticker: 0, photo: 0, gif: 0, video: 0 };
   var total = 0, first = Infinity, last = -Infinity, night = 0;
-  var allTs = [];
+  var silence = { ms: 0, from: 0, to: 0 };
   var label = ids.length === 1 ? chatTitle(chats[ids[0]], ids[0]) : '';
 
   for (var ci = 0; ci < ids.length; ci++) {
@@ -306,6 +306,11 @@ function analyze(chats, ids, year) {
       msgs.push({ m: m, ts: ts, d: d });
     }
     msgs.sort(function (a, b) { return a.ts - b.ts; });
+    // Measure silence only between messages in this same chat, never across chats.
+    for (var si = 1; si < msgs.length; si++) {
+      var gap = msgs[si].ts - msgs[si - 1].ts;
+      if (gap > silence.ms) silence = { ms: gap, from: msgs[si - 1].ts, to: msgs[si].ts };
+    }
 
     var prev = null;
     for (var j = 0; j < msgs.length; j++) {
@@ -326,7 +331,7 @@ function analyze(chats, ids, year) {
       dayCounts.set(dk, (dayCounts.get(dk) || 0) + 1);
       if (it.ts < first) first = it.ts;
       if (it.ts > last) last = it.ts;
-      allTs.push(it.ts);
+
 
       var mt = m2.media_type;
       if (mt === 'voice_message') { media.voice++; p.voice++; }
@@ -347,13 +352,6 @@ function analyze(chats, ids, year) {
 
   if (!total) return { empty: true };
 
-  var arr = Float64Array.from(allTs);
-  arr.sort();
-  var silence = { ms: 0, from: arr[0], to: arr[0] };
-  for (var k = 1; k < arr.length; k++) {
-    var gap = arr[k] - arr[k - 1];
-    if (gap > silence.ms) silence = { ms: gap, from: arr[k - 1], to: arr[k] };
-  }
 
   var dayKeys = Array.from(dayCounts.keys()).sort(function (a, b) { return a - b; });
   function dayIndex(key) {
@@ -419,7 +417,7 @@ function analyze(chats, ids, year) {
 'use strict';
 
 var SITE_NAME = 'TG Wrapped';
-var SITE_URL = 'chat-recap.pages.dev';
+var SITE_URL = 'tgwrapped.devs.surf';
 var FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", "Noto Sans", Arial, sans-serif';
 var EMOJI_FONT = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
 var W = 1080, H = 1920, PAD = 96, BW = W - 2 * PAD;
