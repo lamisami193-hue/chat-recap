@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Strong privacy guarantee: the page is not allowed to make ANY network request.
+     If you later add ads or analytics, loosen connect-src / script-src / img-src for those hosts only. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' blob:; style-src 'unsafe-inline'; img-src blob: data:; worker-src blob:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="application-name" content="TG Wrapped">
+<meta name="keywords" content="Telegram Wrapped, Telegram chat recap, Telegram stats, Telegram export analyzer, chat statistics, private chat analysis">
+<link rel="alternate" hreflang="en" href="https://chat-recap.pages.dev/">
+<link rel="alternate" hreflang="ar" href="https://chat-recap.pages.dev/ar/">
+<link rel="alternate" hreflang="es" href="https://chat-recap.pages.dev/es/">
+<link rel="alternate" hreflang="fr" href="https://chat-recap.pages.dev/fr/">
+<link rel="alternate" hreflang="pt" href="https://chat-recap.pages.dev/pt/">
+<link rel="alternate" hreflang="x-default" href="https://chat-recap.pages.dev/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TG Wrapped","applicationCategory":"UtilitiesApplication","operatingSystem":"Any device with a modern browser","url":"https://chat-recap.pages.dev/","description":"A free, private Telegram chat recap tool that analyzes a Telegram JSON export locally and creates shareable story cards.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Private in-browser Telegram export analysis","Message and emoji statistics","Shareable story cards","No account required","Chat data stays on your device"]}</script>
+<title>ملخص محادثات تيليجرام وإحصاءاتها مجاناً | TG Wrapped</title>
+<meta name="description" content="أنشئ ملخصاً خاصاً لمحادثات تيليجرام مع إحصاءات الرسائل والكلمات والرموز وبطاقات قابلة للمشاركة. مجاناً وداخل المتصفح.">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="canonical" href="https://chat-recap.pages.dev/ar/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chat-recap.pages.dev/ar/">
+<meta property="og:title" content="ملخص محادثات تيليجرام وإحصاءاتها مجاناً | TG Wrapped">
+<meta property="og:description" content="أنشئ ملخصاً خاصاً لمحادثات تيليجرام مع إحصاءات الرسائل والكلمات والرموز وبطاقات قابلة للمشاركة. مجاناً وداخل المتصفح.">
+<meta property="og:site_name" content="TG Wrapped">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ملخص محادثات تيليجرام وإحصاءاتها مجاناً | TG Wrapped">
+<meta name="twitter:description" content="أنشئ ملخصاً خاصاً لمحادثات تيليجرام مع إحصاءات الرسائل والكلمات والرموز وبطاقات قابلة للمشاركة. مجاناً وداخل المتصفح.">
+<style>
+:root{
+  --bg:#0b0f1a; --panel:#141a2b; --panel2:#1b2340; --text:#eef1ff; --muted:#9aa3c7;
+  --a1:#7c5cff; --a2:#ff5c8a; --ok:#3ddc97; --err:#ff6b6b; --r:16px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg);color:var(--text);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic","Noto Sans",Arial,sans-serif;line-height:1.55}
+body{min-height:100vh;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;max-width:980px;width:100%;margin:0 auto}
+.brand{font-weight:800;letter-spacing:.3px;font-size:20px;background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+main{flex:1;width:100%;max-width:980px;margin:0 auto;padding:8px 16px 40px}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.1;margin:18px 0 10px}
+h2{font-size:22px;margin:0 0 12px}
+.sub{color:var(--muted);font-size:17px;max-width:640px;margin:0 0 22px}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:12px 18px;color:#fff;background:linear-gradient(90deg,var(--a1),var(--a2));font-weight:700}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.ghost{background:var(--panel2);color:var(--text);font-weight:600;padding:8px 14px}
+button.small{padding:8px 12px;font-size:14px}
+.drop{display:block;border:2px dashed #3a4580;border-radius:var(--r);padding:34px 18px;text-align:center;background:var(--panel);cursor:pointer;transition:.15s}
+.drop.over{border-color:var(--a2);background:var(--panel2)}
+.drop input{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.drop:focus-visible{outline:3px solid var(--a2);outline-offset:4px}
+button:focus-visible,select:focus-visible,input[type=search]:focus-visible{outline:3px solid var(--a2);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+.drop .big{font-weight:800;font-size:20px;display:block;margin-bottom:6px}
+.drop .small{color:var(--muted);font-size:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
+.panel{background:var(--panel);border-radius:var(--r);padding:16px 18px;margin:14px 0}
+.panel h3{margin:0 0 6px;font-size:17px}
+.panel p{margin:0;color:var(--muted)}
+.safe{border:1px solid rgba(61,220,151,.35)}
+.safe h3{color:var(--ok)}
+details{background:var(--panel);border-radius:var(--r);padding:12px 18px;margin:14px 0}
+summary{cursor:pointer;font-weight:700}
+ol{margin:10px 0 0;padding-inline-start:22px;color:var(--muted)}
+li{margin:6px 0}
+.err{background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.45);color:#ffd2d2;border-radius:12px;padding:12px 14px;margin:14px 0}
+.spinner{width:34px;height:34px;border-radius:50%;border:4px solid #2a335f;border-top-color:var(--a2);animation:sp 1s linear infinite;margin:40px auto 12px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.center{text-align:center;color:var(--muted)}
+label.field{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+select,input[type=search]{font:inherit;background:var(--panel2);color:var(--text);border:1px solid #2c3770;border-radius:10px;padding:10px 12px;min-width:150px}
+.list{max-height:340px;overflow:auto;border-radius:12px;background:var(--panel2);margin:10px 0}
+.item{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer}
+.item:last-child{border-bottom:0}
+.item .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .ct{color:var(--muted);font-size:13px}
+.item input{accent-color:var(--a2);width:18px;height:18px}
+.hint{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:14px}
+.cardbox{background:var(--panel);border-radius:14px;padding:8px}
+.cardbox img{display:block;width:100%;height:auto;border-radius:10px;aspect-ratio:9/16;background:#222}
+.cardbox .acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var(--muted);font-size:13px;text-align:center}.seo-copy{max-width:948px;width:calc(100% - 32px);margin:0 auto 20px}.seo-copy h3{margin:18px 0 8px}.seo-copy details{margin:8px 0}.seo-copy p{color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">TG Wrapped</div>
+  <label class="field" style="min-width:110px"><span class="hint" data-i18n="language_label">Language</span><select id="langSel" aria-label="Language"><option value="en">English</option><option value="ar">العربية</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option></select></label>
+</header>
+
+<main>
+  <section id="s-start">
+    <h1 data-i18n="tagline">Your Telegram chats, wrapped.</h1>
+    <p class="sub" data-i18n="sub"></p>
+
+    <label class="drop" id="drop" tabindex="0" role="button" aria-describedby="drop-help">
+      <input id="file" type="file" accept=".json,application/json">
+      <span class="big" data-i18n="choose"></span>
+      <span class="small" id="drop-help" data-i18n="drop"></span>
+    </label>
+
+    <div class="row">
+      <button id="sampleBtn" class="ghost" type="button" data-i18n="sample"></button>
+    </div>
+
+    <div id="error" class="err" hidden role="alert"></div>
+
+    <div class="panel safe">
+      <h3 data-i18n="verify_title"></h3>
+      <p data-i18n="verify_body"></p>
+    </div>
+
+    <details>
+      <summary data-i18n="how_title"></summary>
+      <ol>
+        <li data-i18n="how1"></li>
+        <li data-i18n="how2"></li>
+        <li data-i18n="how3"></li>
+        <li data-i18n="how4"></li>
+      </ol>
+    </details>
+  </section>
+
+  <section id="s-loading" hidden>
+    <div class="spinner"></div>
+    <p class="center" id="loadingText" data-i18n="loading"></p>
+  </section>
+
+  <section id="s-pick" hidden>
+    <h2 data-i18n="pick_title"></h2>
+    <div class="row">
+      <label class="field"><span data-i18n="year"></span>
+        <select id="yearSel"></select>
+      </label>
+      <label class="field" style="flex:1;min-width:200px"><span>&nbsp;</span>
+        <input id="q" type="search" data-i18n-ph="search">
+      </label>
+    </div>
+    <div class="row">
+      <button id="selAll" class="ghost small" type="button" data-i18n="select_all"></button>
+      <button id="selNone" class="ghost small" type="button" data-i18n="clear"></button>
+      <span class="hint" id="selCount"></span>
+    </div>
+    <div class="list" id="list"></div>
+    <label class="item" style="background:transparent;border:0;padding:6px 0">
+      <input id="hide" type="checkbox">
+      <span><span data-i18n="hide_names"></span><br><span class="hint" data-i18n="hide_hint"></span></span>
+    </label>
+    <div class="row">
+      <button id="go" type="button" data-i18n="generate"></button>
+      <button id="back1" class="ghost" type="button" data-i18n="again"></button>
+    </div>
+  </section>
+
+  <section id="s-result" hidden>
+    <h2 data-i18n="result_title"></h2>
+    <div class="row">
+      <button id="dlAll" type="button" data-i18n="download_all"></button>
+      <button id="back2" class="ghost" type="button" data-i18n="again"></button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<section class="panel seo-copy" aria-labelledby="seo-title">
+  <h2 id="seo-title" data-i18n="seo_title"></h2>
+  <p data-i18n="seo_desc"></p>
+  <h3 data-i18n="faq_title"></h3>
+  <details><summary data-i18n="faq_q1"></summary><p data-i18n="faq_a1"></p></details>
+  <details><summary data-i18n="faq_q2"></summary><p data-i18n="faq_a2"></p></details>
+  <details><summary data-i18n="faq_q3"></summary><p data-i18n="faq_a3"></p></details>
+</section>
+<footer><span data-i18n="footer"></span></footer>
+
+<!-- ============================ STATS ENGINE ============================
+     Pure JS, no DOM. Runs inside a Web Worker (or inline as a fallback) and is unit-tested in Node. -->
+<script id="stats-src" type="text/plain">
+var GAP_MS = 6 * 3600 * 1000;
+var URL_RE = /https?:\/\/\S+|www\.\S+|t\.me\/\S+/gi;
+var WORD_RE = /[\p{L}\p{M}\p{N}'\u2019]+/gu;
+var EMOJI_RE = /\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic}|[\u{1F3FB}-\u{1F3FF}])*/gu;
+var STOP = new Set((
+  'the and for you that this with have are was but not your from they what all can just like get got out has had him her his she our their there will would about when then them than been were who how why its too any one now did does doing very more some into over also here yes yeah okay ' +
+  'le la les de des du un une et en que qui pas pour dans sur est au aux avec ce cet cette ça je tu il elle nous vous ils elles mais ou donc ne se sa son ses mon ma mes ton ta tes comme plus par tout oui non ' +
+  'el los las del una por para con es lo al su sus mi yo te me pero como más ya muy sí no ' +
+  'и в не на я что с как это но он она мы вы они так же то для по из за от все его ее было бы если уже или ты мне да нет ну ' +
+  'في من على إلى عن مع هذا هذه ذلك التي الذي أن إن لا ما هو هي أنا انت أنت كان كل قد بعد او أو ثم هل لم لن يا'
+).split(/\s+/));
+
+function parseTs(m) {
+  var d = m.date;
+  if (typeof d === 'string') {
+    var r = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/.exec(d);
+    if (r) return new Date(+r[1], +r[2] - 1, +r[3], +r[4], +r[5], +r[6]).getTime();
+  }
+  if (m.date_unixtime) return Number(m.date_unixtime) * 1000;
+  return NaN;
+}
+
+function textOf(t) {
+  if (typeof t === 'string') return t;
+  if (Array.isArray(t)) {
+    var s = '';
+    for (var i = 0; i < t.length; i++) {
+      var x = t[i];
+      s += typeof x === 'string' ? x : (x && typeof x.text === 'string' ? x.text : '');
+    }
+    return s;
+  }
+  return '';
+}
+
+function chatTitle(c, i) {
+  if (c.name) return String(c.name);
+  if (c.type === 'saved_messages') return 'Saved Messages';
+  return 'Chat ' + (c.id != null ? c.id : i + 1);
+}
+
+function chatList(data) {
+  var arr = (data && data.chats && Array.isArray(data.chats.list)) ? data.chats.list
+          : (data && Array.isArray(data.messages) ? [data] : null);
+  if (!arr) throw new Error('FORMAT');
+  return arr.map(function (c, i) {
+    var years = {}, total = 0, msgs = c.messages || [];
+    for (var k = 0; k < msgs.length; k++) {
+      var m = msgs[k];
+      if (m.type !== 'message' || typeof m.date !== 'string') continue;
+      var y = m.date.slice(0, 4);
+      years[y] = (years[y] || 0) + 1;
+      total++;
+    }
+    return { id: i, name: chatTitle(c, i), type: c.type || '', total: total, years: years };
+  });
+}
+
+function countText(tx, words, emojis) {
+  var em = tx.match(EMOJI_RE);
+  if (em) for (var i = 0; i < em.length; i++) emojis.set(em[i], (emojis.get(em[i]) || 0) + 1);
+  var w = tx.toLowerCase().replace(URL_RE, ' ').match(WORD_RE);
+  if (!w) return;
+  for (var j = 0; j < w.length; j++) {
+    var x = w[j].replace(/^['\u2019]+|['\u2019]+$/g, '');
+    if (x.length < 3 || STOP.has(x) || /^\p{N}+$/u.test(x)) continue;
+    words.set(x, (words.get(x) || 0) + 1);
+  }
+}
+
+function median(a) {
+  if (!a.length) return null;
+  var b = a.slice().sort(function (x, y) { return x - y; });
+  var h = b.length >> 1;
+  return b.length % 2 ? b[h] : (b[h - 1] + b[h]) / 2;
+}
+
+function topEntries(map, n) {
+  return Array.from(map.entries()).sort(function (a, b) { return b[1] - a[1]; }).slice(0, n);
+}
+
+function pickMax(list, fn, ok) {
+  var best = null, bv = -Infinity;
+  list.forEach(function (p) {
+    if (!ok(p)) return;
+    var v = fn(p);
+    if (v > bv) { bv = v; best = p; }
+  });
+  return best ? { p: best, v: bv } : null;
+}
+
+function analyze(chats, ids, year) {
+  var people = new Map();
+  var hours = new Array(24).fill(0), wdays = new Array(7).fill(0);
+  var dayCounts = new Map(), words = new Map(), emojis = new Map();
+  var media = { voice: 0, videoNote: 0, sticker: 0, photo: 0, gif: 0, video: 0 };
+  var total = 0, first = Infinity, last = -Infinity, night = 0;
+  var allTs = [];
+  var label = ids.length === 1 ? chatTitle(chats[ids[0]], ids[0]) : '';
+
+  for (var ci = 0; ci < ids.length; ci++) {
+    var c = chats[ids[ci]];
+    var chatName = chatTitle(c, ids[ci]);
+    var msgs = [], src = c.messages || [];
+    for (var i = 0; i < src.length; i++) {
+      var m = src[i];
+      if (m.type !== 'message') continue;
+      var ts = parseTs(m);
+      if (!(ts > 0)) continue;
+      var d = new Date(ts);
+      if (year && d.getFullYear() !== year) continue;
+      msgs.push({ m: m, ts: ts, d: d });
+    }
+    msgs.sort(function (a, b) { return a.ts - b.ts; });
+
+    var prev = null;
+    for (var j = 0; j < msgs.length; j++) {
+      var it = msgs[j], m2 = it.m;
+      var key = m2.from_id || m2.from || ('chat:' + chatName);
+      var p = people.get(key);
+      if (!p) {
+        p = { name: m2.from || (m2.from_id ? 'Deleted account' : chatName), count: 0, textMsgs: 0, chars: 0, voice: 0, night: 0, starts: 0, resp: [] };
+        people.set(key, p);
+      }
+      if (m2.from && p.name === 'Deleted account') p.name = m2.from;
+      p.count++; total++;
+
+      var h = it.d.getHours();
+      hours[h]++; wdays[(it.d.getDay() + 6) % 7]++;
+      if (h < 5) { night++; p.night++; }
+      var dk = it.d.getFullYear() * 10000 + (it.d.getMonth() + 1) * 100 + it.d.getDate();
+      dayCounts.set(dk, (dayCounts.get(dk) || 0) + 1);
+      if (it.ts < first) first = it.ts;
+      if (it.ts > last) last = it.ts;
+      allTs.push(it.ts);
+
+      var mt = m2.media_type;
+      if (mt === 'voice_message') { media.voice++; p.voice++; }
+      else if (mt === 'video_message') media.videoNote++;
+      else if (mt === 'sticker') media.sticker++;
+      else if (mt === 'animation') media.gif++;
+      else if (mt === 'video_file') media.video++;
+      if (m2.photo) media.photo++;
+
+      var tx = textOf(m2.text);
+      if (tx) { p.textMsgs++; p.chars += tx.length; countText(tx, words, emojis); }
+
+      if (!prev || it.ts - prev.ts > GAP_MS) p.starts++;
+      else if (prev.key !== key) p.resp.push(it.ts - prev.ts);
+      prev = { ts: it.ts, key: key };
+    }
+  }
+
+  if (!total) return { empty: true };
+
+  var arr = Float64Array.from(allTs);
+  arr.sort();
+  var silence = { ms: 0, from: arr[0], to: arr[0] };
+  for (var k = 1; k < arr.length; k++) {
+    var gap = arr[k] - arr[k - 1];
+    if (gap > silence.ms) silence = { ms: gap, from: arr[k - 1], to: arr[k] };
+  }
+
+  var dayKeys = Array.from(dayCounts.keys()).sort(function (a, b) { return a - b; });
+  function dayIndex(key) {
+    return Math.round(Date.UTC(Math.floor(key / 10000), Math.floor(key / 100) % 100 - 1, key % 100) / 864e5);
+  }
+  function dayTs(key) {
+    return new Date(Math.floor(key / 10000), Math.floor(key / 100) % 100 - 1, key % 100, 12).getTime();
+  }
+  var streak = { days: 1, start: dayKeys[0], end: dayKeys[0] };
+  var runStart = dayKeys[0], runLen = 1;
+  for (var q = 1; q < dayKeys.length; q++) {
+    if (dayIndex(dayKeys[q]) - dayIndex(dayKeys[q - 1]) === 1) runLen++;
+    else { runStart = dayKeys[q]; runLen = 1; }
+    if (runLen > streak.days) streak = { days: runLen, start: runStart, end: dayKeys[q] };
+  }
+  streak = { days: streak.days, start: dayTs(streak.start), end: dayTs(streak.end) };
+
+  var busyKey = dayKeys[0], busyCount = 0;
+  dayCounts.forEach(function (v, kk) { if (v > busyCount) { busyCount = v; busyKey = kk; } });
+
+  var list = Array.from(people.values()).sort(function (a, b) { return b.count - a.count; });
+  var peopleCount = list.length;
+  var out = list.slice(0, 8).map(function (p) {
+    return {
+      name: p.name, count: p.count, share: p.count / total, textMsgs: p.textMsgs,
+      avgLen: p.textMsgs ? p.chars / p.textMsgs : 0, voice: p.voice, night: p.night,
+      nightShare: p.count ? p.night / p.count : 0, starts: p.starts,
+      respN: p.resp.length, medResp: p.resp.length >= 5 ? median(p.resp) : null
+    };
+  });
+
+  var awards = [];
+  var multi = out.length > 1;
+  if (multi) awards.push({ key: 'chatter', name: out[0].name, value: out[0].count });
+  var st = pickMax(out, function (p) { return p.starts; }, function (p) { return multi && p.starts >= 3; });
+  if (st) awards.push({ key: 'starter', name: st.p.name, value: st.v });
+  var no = pickMax(out, function (p) { return p.nightShare; }, function (p) { return p.count >= 20 && p.night >= 5; });
+  if (no) awards.push({ key: 'night', name: no.p.name, value: no.v });
+  var es = pickMax(out, function (p) { return p.avgLen; }, function (p) { return multi && p.textMsgs >= 20; });
+  if (es) awards.push({ key: 'essay', name: es.p.name, value: es.v });
+  var vo = pickMax(out, function (p) { return p.voice; }, function (p) { return p.voice >= 5; });
+  if (vo) awards.push({ key: 'voice', name: vo.p.name, value: vo.v });
+  var fa = pickMax(out, function (p) { return -p.medResp; }, function (p) { return p.medResp != null && p.respN >= 10; });
+  if (fa && multi) awards.push({ key: 'fast', name: fa.p.name, value: -fa.v });
+
+  var maxH = Math.max.apply(null, hours), maxW = Math.max.apply(null, wdays);
+  return {
+    empty: false, year: year || 0, label: label, nChats: ids.length, multi: ids.length > 1,
+    total: total, first: first, last: last, activeDays: dayKeys.length,
+    streak: streak, busiest: { ts: dayTs(busyKey), count: busyCount }, silence: silence,
+    hours: hours, wdays: wdays, peakHour: hours.indexOf(maxH), peakWeekday: wdays.indexOf(maxW),
+    nightShare: night / total,
+    words: topEntries(words, 8), emojis: topEntries(emojis, 8), media: media,
+    people: out, peopleCount: peopleCount, others: Math.max(0, peopleCount - out.length),
+    isDuo: ids.length === 1 && peopleCount === 2, awards: awards
+  };
+}
+</script>
+
+<!-- ============================ APP ============================ -->
+<script>
+(function () {
+'use strict';
+
+var SITE_NAME = 'TG Wrapped';
+var SITE_URL = 'chat-recap.pages.dev';
+var FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", "Noto Sans", Arial, sans-serif';
+var EMOJI_FONT = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+var W = 1080, H = 1920, PAD = 96, BW = W - 2 * PAD;
+
+/* ---------------- translations ---------------- */
+var I18N = {
+  en: {
+    language_label: 'Language', seo_title: 'Free Telegram Wrapped & Chat Statistics', seo_desc: 'Create a private Telegram chat recap with message statistics, top words, emojis and shareable story cards. Free, no account, processed locally in your browser.', faq_title: 'About Telegram Wrapped', faq_q1: 'What is Telegram Wrapped?', faq_a1: 'TG Wrapped analyzes a Telegram Desktop JSON export and creates a recap with message counts, active days, frequent words, emojis and story cards.', faq_q2: 'Is my Telegram export uploaded?', faq_a2: 'No. The file is processed in your browser. The app does not upload your chat export to a server.', faq_q3: 'How do I export Telegram chat data?', faq_a3: 'In Telegram Desktop, open Settings and choose Advanced, then Export Telegram data. Choose machine-readable JSON and omit media for a smaller file.',
+    tagline: 'Your Telegram chats, wrapped.',
+    sub: 'Turn a Telegram chat export into shareable story cards of your year. Everything runs in your browser - your file never leaves your device.',
+    choose: 'Choose result.json', drop: 'or drop the file here', sample: 'Try with sample data',
+    verify_title: 'Private by design',
+    verify_body: 'Your file is read and analyzed inside this page. Nothing is uploaded. You can check it yourself: load the page, turn off your internet, and it still works.',
+    how_title: 'How to get your file',
+    how1: 'Open Telegram Desktop (Windows, macOS or Linux).',
+    how2: 'Open a chat, tap the three dots and choose "Export chat history". For many chats at once: Settings > Advanced > Export Telegram data (menu names can differ between versions).',
+    how3: 'Uncheck photos, videos and files. Set the format to "Machine-readable JSON", then export.',
+    how4: 'Come back here and choose the result.json file it created.',
+    loading: 'Reading your file...',
+    pick_title: 'Choose what to wrap', year: 'Year', all_time: 'All time', search: 'Search chats...',
+    select_all: 'Select all', clear: 'Clear', hide_names: 'Hide names on the cards',
+    hide_hint: 'The most used words may still contain names.',
+    generate: 'Create my cards', n_selected: '{n} selected', msgs_short: 'msgs',
+    err_format: 'This does not look like a Telegram export. Export as "Machine-readable JSON" and choose result.json.',
+    err_json: 'Could not read this file as JSON.',
+    err_big: 'This file is too large for the browser. Export without media, or export fewer chats.',
+    err_empty: 'No messages found for this selection. Try another year or chat.',
+    result_title: 'Your cards', download: 'Download', download_all: 'Download all', share: 'Share', again: 'Start over',
+    footer: 'Not affiliated with Telegram. Your data stays on your device.',
+    wrapped: 'Wrapped', all_wrapped: 'All-time Wrapped', c_msgs: 'messages', c_in: 'in', c_active: 'active days',
+    c_who: 'Who talks the most', c_peak: 'Your peak hour', c_night: 'of messages were sent between midnight and 5am',
+    c_week: 'Your busiest weekday', c_busiest: 'Busiest day', c_start: 'Who starts the conversation',
+    c_reply: 'Typical reply time', c_silence: 'Longest silence', c_streak: 'Longest streak', c_streak_u: 'days in a row',
+    c_words: 'Most used words', c_emoji: 'Most used emoji', c_media: 'Media and more',
+    voice: 'Voice messages', vnotes: 'Video messages', stickers: 'Stickers', photos: 'Photos', gifs: 'GIFs',
+    c_awards: 'The awards', a_chatter: 'Chatterbox', a_starter: 'Conversation starter', a_night: 'Night owl',
+    a_essay: 'Essay writer', a_voice: 'Voice-note fan', a_fast: 'Fast replier',
+    v_msgs: 'messages', v_chars: 'characters per message', v_starts: 'conversations started',
+    v_night: 'of their messages after midnight', v_voice: 'voice messages', v_reply: 'typical reply',
+    make_yours: 'Make yours at', ran_local: 'Made privately in my browser',
+    days: 'days', hours: 'hours', min: 'min', person: 'Person', chats_n: '{n} chats', this_chat: 'this chat',
+    sample_name: 'Sample chat', starts_word: 'starts'
+  },
+  ar: {
+    language_label: 'اللغة', seo_title: 'ملخص محادثات تيليجرام وإحصاءاتها مجاناً', seo_desc: 'أنشئ ملخصاً خاصاً لمحادثات تيليجرام مع إحصاءات الرسائل والكلمات والرموز وبطاقات قابلة للمشاركة. مجاناً وداخل المتصفح.', faq_title: 'حول ملخص تيليجرام', faq_q1: 'ما هو TG Wrapped؟', faq_a1: 'يحلل TG Wrapped ملف JSON المصدر من Telegram Desktop وينشئ ملخصاً يتضمن عدد الرسائل وأيام النشاط والكلمات والرموز الشائعة وبطاقات القصص.', faq_q2: 'هل يتم رفع ملف محادثاتي؟', faq_a2: 'لا. تتم معالجة الملف داخل متصفحك ولا يرفع التطبيق ملف المحادثات إلى خادم.', faq_q3: 'كيف أصدّر بيانات تيليجرام؟', faq_a3: 'في Telegram Desktop افتح الإعدادات ثم متقدم ثم تصدير بيانات تيليجرام. اختر JSON مقروءاً آلياً واستبعد الوسائط لتقليل حجم الملف.',
+    tagline: 'محادثات تيليجرام الخاصة بك، في ملخص.',
+    sub: 'حوّل ملف تصدير محادثات تيليجرام إلى بطاقات جميلة تلخص سنتك وتستطيع مشاركتها. كل شيء يعمل داخل متصفحك، والملف لا يغادر جهازك.',
+    choose: 'اختر ملف result.json', drop: 'أو أسقط الملف هنا', sample: 'جرّب ببيانات تجريبية',
+    verify_title: 'خصوصيتك محفوظة',
+    verify_body: 'يُقرأ ملفك ويُحلَّل داخل هذه الصفحة فقط، ولا يُرفع إلى أي مكان. وتستطيع التحقق بنفسك: افتح الصفحة ثم اقطع الإنترنت، وسيبقى كل شيء يعمل.',
+    how_title: 'كيف أحصل على الملف؟',
+    how1: 'افتح تيليجرام على الحاسوب (ويندوز أو ماك أو لينكس).',
+    how2: 'افتح محادثة، واضغط على النقاط الثلاث، ثم اختر "تصدير سجل المحادثة". ولعدة محادثات معاً: الإعدادات > متقدم > تصدير بيانات تيليجرام (أسماء القوائم قد تختلف بين الإصدارات).',
+    how3: 'ألغِ تحديد الصور والفيديو والملفات. اجعل الصيغة "JSON مقروء آلياً" ثم صدّر.',
+    how4: 'ارجع إلى هنا واختر ملف result.json الذي أنشأه.',
+    loading: 'جارٍ قراءة ملفك...',
+    pick_title: 'اختر ما تريد تلخيصه', year: 'السنة', all_time: 'كل الأوقات', search: 'ابحث في المحادثات...',
+    select_all: 'تحديد الكل', clear: 'مسح التحديد', hide_names: 'إخفاء الأسماء في البطاقات',
+    hide_hint: 'قد تظهر أسماء ضمن الكلمات الأكثر استخداماً.',
+    generate: 'أنشئ بطاقاتي', n_selected: 'المحدد: {n}', msgs_short: 'رسالة',
+    err_format: 'لا يبدو هذا ملف تصدير من تيليجرام. صدّر بصيغة "JSON مقروء آلياً" واختر result.json.',
+    err_json: 'تعذّرت قراءة هذا الملف كـ JSON.',
+    err_big: 'الملف أكبر مما يتحمله المتصفح. صدّر دون وسائط أو صدّر محادثات أقل.',
+    err_empty: 'لا توجد رسائل لهذا الاختيار. جرّب سنة أو محادثة أخرى.',
+    result_title: 'بطاقاتك', download: 'تنزيل', download_all: 'تنزيل الكل', share: 'مشاركة', again: 'ابدأ من جديد',
+    footer: 'الموقع غير تابع لتيليجرام. بياناتك تبقى على جهازك.',
+    wrapped: 'ملخص', all_wrapped: 'ملخص كل الأوقات', c_msgs: 'رسالة', c_in: 'في', c_active: 'يوم نشاط',
+    c_who: 'من يتكلم أكثر', c_peak: 'ساعة الذروة', c_night: 'من الرسائل أُرسلت بين منتصف الليل والخامسة فجراً',
+    c_week: 'أنشط أيام الأسبوع', c_busiest: 'أنشط يوم', c_start: 'من يبدأ الحديث',
+    c_reply: 'زمن الرد المعتاد', c_silence: 'أطول صمت', c_streak: 'أطول سلسلة', c_streak_u: 'يوماً متتالياً',
+    c_words: 'أكثر الكلمات استخداماً', c_emoji: 'أكثر الرموز استخداماً', c_media: 'الوسائط وأكثر',
+    voice: 'رسائل صوتية', vnotes: 'رسائل فيديو', stickers: 'ملصقات', photos: 'صور', gifs: 'صور متحركة',
+    c_awards: 'الجوائز', a_chatter: 'ثرثار المحادثة', a_starter: 'صاحب البداية', a_night: 'بومة الليل',
+    a_essay: 'كاتب المقالات', a_voice: 'عاشق الصوتيات', a_fast: 'سريع الرد',
+    v_msgs: 'رسالة', v_chars: 'حرفاً في الرسالة', v_starts: 'محادثة بدأها',
+    v_night: 'من رسائله بعد منتصف الليل', v_voice: 'رسالة صوتية', v_reply: 'زمن الرد المعتاد',
+    make_yours: 'اصنع ملخصك على', ran_local: 'صُنع بخصوصية داخل متصفحي',
+    days: 'يوم', hours: 'ساعة', min: 'دقيقة', person: 'شخص', chats_n: '{n} محادثات', this_chat: 'هذه المحادثة',
+    sample_name: 'محادثة تجريبية', starts_word: 'بداية'
+  }
+};
+
+I18N = Object.assign(I18N, {"es":{"language_label":"Idioma","tagline":"Tus chats de Telegram, en resumen.","sub":"Convierte una exportación de Telegram en tarjetas para compartir. Todo se procesa en tu navegador: el archivo nunca sale de tu dispositivo.","choose":"Elegir result.json","drop":"o suelta el archivo aquí","sample":"Probar con datos de ejemplo","verify_title":"Privacidad desde el diseño","verify_body":"El archivo se lee y analiza en esta página. No se sube a ningún servidor.","how_title":"Cómo obtener tu archivo","how1":"Abre Telegram Desktop (Windows, macOS o Linux).","how2":"Abre un chat, pulsa los tres puntos y elige Exportar historial del chat. Para varios chats: Ajustes > Avanzados > Exportar datos de Telegram.","how3":"Desmarca fotos, vídeos y archivos. Elige JSON legible por máquina y exporta.","how4":"Vuelve aquí y selecciona result.json.","loading":"Leyendo tu archivo...","pick_title":"Elige qué resumir","year":"Año","all_time":"Todo el período","search":"Buscar chats...","select_all":"Seleccionar todo","clear":"Borrar selección","hide_names":"Ocultar nombres en las tarjetas","hide_hint":"Las palabras más usadas aún pueden contener nombres.","generate":"Crear mis tarjetas","n_selected":"{n} seleccionados","msgs_short":"mensajes","err_format":"No parece una exportación de Telegram. Exporta como JSON legible por máquina y selecciona result.json.","err_json":"No se pudo leer el archivo como JSON.","err_big":"El archivo es demasiado grande. Expórtalo sin archivos multimedia o con menos chats.","err_empty":"No hay mensajes para esta selección. Prueba otro año o chat.","result_title":"Tus tarjetas","download":"Descargar","download_all":"Descargar todo","share":"Compartir","again":"Empezar de nuevo","footer":"No estamos afiliados a Telegram. Tus datos permanecen en tu dispositivo.","wrapped":"Resumen","all_wrapped":"Resumen de todo el período","c_msgs":"mensajes","c_in":"en","c_active":"días activos","c_who":"Quién habla más","c_peak":"Tu hora punta","c_night":"de los mensajes se enviaron entre medianoche y las 5 a. m.","c_week":"Tu día de la semana más activo","c_busiest":"Día con más actividad","c_start":"Quién inicia la conversación","c_reply":"Tiempo de respuesta habitual","c_silence":"Silencio más largo","c_streak":"Racha más larga","c_streak_u":"días seguidos","c_words":"Palabras más usadas","c_emoji":"Emoji más usado","c_media":"Archivos y más","voice":"Mensajes de voz","vnotes":"Mensajes de vídeo","stickers":"Stickers","photos":"Fotos","gifs":"GIF","c_awards":"Premios","a_chatter":"El más hablador","a_starter":"Quien inicia la charla","a_night":"Ave nocturna","a_essay":"Escritor de ensayos","a_voice":"Fan de los audios","a_fast":"Respuesta rápida","v_msgs":"mensajes","v_chars":"caracteres por mensaje","v_starts":"conversaciones iniciadas","v_night":"de sus mensajes después de medianoche","v_voice":"mensajes de voz","v_reply":"respuesta habitual","make_yours":"Crea el tuyo en","ran_local":"Creado de forma privada en mi navegador","days":"días","hours":"horas","min":"min","person":"Persona","chats_n":"{n} chats","this_chat":"este chat","sample_name":"Chat de ejemplo","starts_word":"inicios"},"fr":{"language_label":"Langue","tagline":"Vos discussions Telegram, en résumé.","sub":"Transformez une exportation Telegram en cartes à partager. Tout est traité dans votre navigateur : votre fichier ne quitte jamais votre appareil.","choose":"Choisir result.json","drop":"ou déposez le fichier ici","sample":"Essayer avec des données de démonstration","verify_title":"La confidentialité par conception","verify_body":"Votre fichier est lu et analysé dans cette page. Rien n’est envoyé à un serveur.","how_title":"Comment obtenir votre fichier","how1":"Ouvrez Telegram Desktop (Windows, macOS ou Linux).","how2":"Ouvrez une discussion, cliquez sur les trois points puis choisissez Exporter l’historique. Pour plusieurs discussions : Paramètres > Avancés > Exporter les données Telegram.","how3":"Décochez les photos, vidéos et fichiers. Choisissez JSON lisible par machine, puis exportez.","how4":"Revenez ici et sélectionnez result.json.","loading":"Lecture de votre fichier…","pick_title":"Choisissez le récapitulatif","year":"Année","all_time":"Toute la période","search":"Rechercher des discussions…","select_all":"Tout sélectionner","clear":"Effacer la sélection","hide_names":"Masquer les noms sur les cartes","hide_hint":"Les mots les plus utilisés peuvent encore contenir des noms.","generate":"Créer mes cartes","n_selected":"{n} sélectionnés","msgs_short":"messages","err_format":"Ce fichier ne semble pas être une exportation Telegram. Exportez au format JSON lisible par machine et choisissez result.json.","err_json":"Impossible de lire ce fichier JSON.","err_big":"Le fichier est trop volumineux. Exportez sans médias ou avec moins de discussions.","err_empty":"Aucun message pour cette sélection. Essayez une autre année ou discussion.","result_title":"Vos cartes","download":"Télécharger","download_all":"Tout télécharger","share":"Partager","again":"Recommencer","footer":"Ce site n’est pas affilié à Telegram. Vos données restent sur votre appareil.","wrapped":"Récapitulatif","all_wrapped":"Récapitulatif de toute la période","c_msgs":"messages","c_in":"dans","c_active":"jours actifs","c_who":"Qui parle le plus","c_peak":"Votre heure de pointe","c_night":"des messages ont été envoyés entre minuit et 5 h","c_week":"Votre jour le plus actif","c_busiest":"Journée la plus active","c_start":"Qui lance la conversation","c_reply":"Temps de réponse habituel","c_silence":"Plus long silence","c_streak":"Plus longue série","c_streak_u":"jours consécutifs","c_words":"Mots les plus utilisés","c_emoji":"Emoji le plus utilisé","c_media":"Médias et plus","voice":"Messages vocaux","vnotes":"Messages vidéo","stickers":"Autocollants","photos":"Photos","gifs":"GIF","c_awards":"Les récompenses","a_chatter":"Le plus bavard","a_starter":"Lanceur de conversation","a_night":"Oiseau de nuit","a_essay":"Grand rédacteur","a_voice":"Fan des messages vocaux","a_fast":"Réponse rapide","v_msgs":"messages","v_chars":"caractères par message","v_starts":"conversations lancées","v_night":"de ses messages après minuit","v_voice":"messages vocaux","v_reply":"réponse habituelle","make_yours":"Créez le vôtre sur","ran_local":"Créé en privé dans mon navigateur","days":"jours","hours":"heures","min":"min","person":"Personne","chats_n":"{n} discussions","this_chat":"cette discussion","sample_name":"Discussion exemple","starts_word":"débuts"},"pt":{"language_label":"Idioma","tagline":"As suas conversas do Telegram, resumidas.","sub":"Transforme uma exportação do Telegram em cartões para partilhar. Tudo é processado no navegador: o ficheiro nunca sai do seu dispositivo.","choose":"Escolher result.json","drop":"ou solte o ficheiro aqui","sample":"Experimentar com dados de exemplo","verify_title":"Privacidade desde a conceção","verify_body":"O ficheiro é lido e analisado nesta página. Nada é enviado para um servidor.","how_title":"Como obter o ficheiro","how1":"Abra o Telegram Desktop (Windows, macOS ou Linux).","how2":"Abra uma conversa, clique nos três pontos e escolha Exportar histórico da conversa. Para várias conversas: Definições > Avançadas > Exportar dados do Telegram.","how3":"Desmarque fotos, vídeos e ficheiros. Escolha JSON legível por máquina e exporte.","how4":"Volte aqui e selecione result.json.","loading":"A ler o ficheiro…","pick_title":"Escolha o que resumir","year":"Ano","all_time":"Todo o período","search":"Pesquisar conversas…","select_all":"Selecionar tudo","clear":"Limpar seleção","hide_names":"Ocultar nomes nos cartões","hide_hint":"As palavras mais usadas ainda podem conter nomes.","generate":"Criar os meus cartões","n_selected":"{n} selecionados","msgs_short":"mensagens","err_format":"Isto não parece uma exportação do Telegram. Exporte em JSON legível por máquina e escolha result.json.","err_json":"Não foi possível ler este ficheiro como JSON.","err_big":"O ficheiro é demasiado grande. Exporte sem multimédia ou com menos conversas.","err_empty":"Não foram encontradas mensagens nesta seleção. Experimente outro ano ou conversa.","result_title":"Os seus cartões","download":"Transferir","download_all":"Transferir tudo","share":"Partilhar","again":"Recomeçar","footer":"Este site não é afiliado ao Telegram. Os seus dados ficam no dispositivo.","wrapped":"Resumo","all_wrapped":"Resumo de todo o período","c_msgs":"mensagens","c_in":"em","c_active":"dias ativos","c_who":"Quem fala mais","c_peak":"A sua hora de pico","c_night":"das mensagens foram enviadas entre a meia-noite e as 5h","c_week":"O dia da semana mais ativo","c_busiest":"Dia mais ativo","c_start":"Quem inicia a conversa","c_reply":"Tempo habitual de resposta","c_silence":"Silêncio mais longo","c_streak":"Sequência mais longa","c_streak_u":"dias seguidos","c_words":"Palavras mais usadas","c_emoji":"Emoji mais usado","c_media":"Multimédia e mais","voice":"Mensagens de voz","vnotes":"Mensagens de vídeo","stickers":"Autocolantes","photos":"Fotos","gifs":"GIFs","c_awards":"Os prémios","a_chatter":"Quem mais fala","a_starter":"Quem inicia a conversa","a_night":"Ave noturna","a_essay":"Escritor de textos","a_voice":"Fã de mensagens de voz","a_fast":"Resposta rápida","v_msgs":"mensagens","v_chars":"caracteres por mensagem","v_starts":"conversas iniciadas","v_night":"das suas mensagens após a meia-noite","v_voice":"mensagens de voz","v_reply":"resposta habitual","make_yours":"Crie o seu em","ran_local":"Criado em privado no meu navegador","days":"dias","hours":"horas","min":"min","person":"Pessoa","chats_n":"{n} conversas","this_chat":"esta conversa","sample_name":"Conversa de exemplo","starts_word":"inícios"}} );
+I18N.en = Object.assign(I18N.en, {"seo_title":"Free Telegram Wrapped & Chat Statistics","seo_desc":"Create a private Telegram chat recap with message statistics, top words, emojis and shareable story cards. Free, no account, processed locally in your browser.","faq_title":"About Telegram Wrapped","faq_q1":"What is Telegram Wrapped?","faq_a1":"TG Wrapped analyzes a Telegram Desktop JSON export and creates a recap with message counts, active days, frequent words, emojis and story cards.","faq_q2":"Is my Telegram export uploaded?","faq_a2":"No. The file is processed in your browser. The app does not upload your chat export to a server.","faq_q3":"How do I export Telegram chat data?","faq_a3":"In Telegram Desktop, open Settings and choose Advanced, then Export Telegram data. Choose machine-readable JSON and omit media for a smaller file."});
+I18N.es = Object.assign(I18N.es, {"seo_title":"Telegram Wrapped gratis: resumen y estadísticas de chats","seo_desc":"Crea un resumen privado de Telegram con estadísticas, palabras frecuentes, emojis y tarjetas para compartir. Gratis y procesado en tu navegador.","faq_title":"Acerca de Telegram Wrapped","faq_q1":"¿Qué es Telegram Wrapped?","faq_a1":"TG Wrapped analiza una exportación JSON de Telegram Desktop y crea un resumen con mensajes, días activos, palabras frecuentes, emojis y tarjetas.","faq_q2":"¿Se sube mi exportación de Telegram?","faq_a2":"No. El archivo se procesa en tu navegador y no se sube a ningún servidor.","faq_q3":"¿Cómo exporto mis datos de Telegram?","faq_a3":"En Telegram Desktop, abre Ajustes y Avanzados, y después Exportar datos de Telegram. Elige JSON legible por máquina y omite los archivos multimedia para reducir el tamaño."});
+I18N.fr = Object.assign(I18N.fr, {"seo_title":"Telegram Wrapped gratuit : résumé et statistiques des discussions","seo_desc":"Créez un récapitulatif Telegram privé avec statistiques, mots fréquents, emojis et cartes à partager. Gratuit et traité dans votre navigateur.","faq_title":"À propos de Telegram Wrapped","faq_q1":"Qu’est-ce que Telegram Wrapped ?","faq_a1":"TG Wrapped analyse une exportation JSON de Telegram Desktop et crée un récapitulatif des messages, jours actifs, mots fréquents, emojis et cartes.","faq_q2":"Mon exportation Telegram est-elle envoyée en ligne ?","faq_a2":"Non. Le fichier est traité dans votre navigateur et n’est envoyé à aucun serveur.","faq_q3":"Comment exporter mes données Telegram ?","faq_a3":"Dans Telegram Desktop, ouvrez Paramètres puis Avancés, et choisissez Exporter les données Telegram. Sélectionnez JSON lisible par machine et excluez les médias pour réduire la taille."});
+I18N.pt = Object.assign(I18N.pt, {"seo_title":"Telegram Wrapped grátis: resumo e estatísticas de conversas","seo_desc":"Crie um resumo privado do Telegram com estatísticas, palavras frequentes, emojis e cartões para partilhar. Gratuito e processado no navegador.","faq_title":"Sobre o Telegram Wrapped","faq_q1":"O que é o Telegram Wrapped?","faq_a1":"O TG Wrapped analisa uma exportação JSON do Telegram Desktop e cria um resumo com mensagens, dias ativos, palavras frequentes, emojis e cartões.","faq_q2":"A minha exportação do Telegram é enviada para algum servidor?","faq_a2":"Não. O ficheiro é processado no navegador e não é enviado para um servidor.","faq_q3":"Como exporto os meus dados do Telegram?","faq_a3":"No Telegram Desktop, abra Definições e Avançadas e escolha Exportar dados do Telegram. Selecione JSON legível por máquina e exclua multimédia para reduzir o tamanho."});
+
+var pathLang = (window.location.pathname.split('/')[1] || '').toLowerCase();
+var isLocalizedPath = ['ar','es','fr','pt'].indexOf(pathLang) !== -1;
+var lang = isLocalizedPath ? pathLang : 'en';
+try {
+  var saved = localStorage.getItem('lang');
+  if (!isLocalizedPath && ['en','ar','es','fr','pt'].indexOf(saved) !== -1) lang = saved;
+  else if (!isLocalizedPath && ['en','ar','es','fr','pt'].indexOf((navigator.language || '').slice(0, 2)) !== -1) lang = (navigator.language || '').slice(0, 2);
+} catch (e) {
+  if (!isLocalizedPath && ['en','ar','es','fr','pt'].indexOf((navigator.language || '').slice(0, 2)) !== -1) lang = (navigator.language || '').slice(0, 2);
+}
+
+function tr(k, v) {
+  var s = I18N[lang] && I18N[lang][k];
+  if (s == null) s = I18N.en[k];
+  if (s == null) s = k;
+  if (v) for (var x in v) s = s.split('{' + x + '}').join(v[x]);
+  return s;
+}
+function loc() { return lang === 'ar' ? 'ar-u-nu-latn' : 'en'; }
+function nfmt(n) { return new Intl.NumberFormat(loc()).format(n); }
+function dfmt(ts) { return new Intl.DateTimeFormat(loc(), { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(ts)); }
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+function $(id) { return document.getElementById(id); }
+
+/* ---------------- state ---------------- */
+var engine = null, chats = [], selected = new Set(), yearSel = 'all', fileLoadToken = 0;
+var lastResult = null, blobUrls = [], renderToken = 0, cardBlobs = [];
+
+/* ---------------- engine (worker with inline fallback) ---------------- */
+var WORKER_GLUE = '\nvar DATA=null;\nself.onmessage=async function(e){var m=e.data;try{' +
+  'if(m.type==="load"){var text=await m.file.text();DATA=JSON.parse(text);text=null;self.postMessage({type:"loaded",chats:chatList(DATA)});}' +
+  'else if(m.type==="analyze"){var list=(DATA.chats&&DATA.chats.list)?DATA.chats.list:[DATA];var result=analyze(list,m.ids,m.year);DATA=null;self.postMessage({type:"result",result:result});}' +
+  '}catch(err){self.postMessage({type:"error",name:String(err&&err.name||""),message:String(err&&err.message||err)});}};';
+
+function makeWorkerEngine(src) {
+  var blob = new Blob([src + WORKER_GLUE], { type: 'text/javascript' });
+  var url = URL.createObjectURL(blob);
+  var w = new Worker(url);
+  var pending = null;
+  w.onmessage = function (e) {
+    var m = e.data, p = pending; pending = null;
+    if (!p) return;
+    if (m.type === 'error') { var er = new Error(m.message); er.name = m.name; p.reject(er); }
+    else p.resolve(m);
+  };
+  w.onerror = function () {
+    var p = pending; pending = null;
+    if (p) { var er = new Error('WORKER'); er.workerFail = true; p.reject(er); }
+  };
+  function call(msg) {
+    return new Promise(function (resolve, reject) { pending = { resolve: resolve, reject: reject }; w.postMessage(msg); });
+  }
+  return {
+    load: function (file) { return call({ type: 'load', file: file }).then(function (m) { return m.chats; }); },
+    analyze: function (ids, year) { return call({ type: 'analyze', ids: ids, year: year }).then(function (m) { return m.result; }); },
+    dispose: function () {
+      w.terminate();
+      URL.revokeObjectURL(url);
+      if (pending) { pending.reject(new Error('CANCELLED')); pending = null; }
+    }
+  };
+}
+
+function makeInlineEngine(src) {
+  var api = new Function(src + '\nreturn {chatList:chatList,analyze:analyze};')();
+  var DATA = null;
+  return {
+    dispose: function () { DATA = null; },
+    load: function (file) {
+      return file.text().then(function (t) { DATA = JSON.parse(t); return api.chatList(DATA); });
+    },
+    analyze: function (ids, year) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          try {
+            if (!DATA) { resolve({ empty: true }); return; }
+            var list = (DATA.chats && DATA.chats.list) ? DATA.chats.list : [DATA];
+            var result = api.analyze(list, ids, year);
+            DATA = null;
+            resolve(result);
+          } catch (e) {
+            DATA = null;
+            reject(e);
+          }
+        }, 20);
+      });
+    }
+  };
+}
+
+function createEngine() {
+  var src = $('stats-src').textContent;
+  var inline = null;
+  function getInline() { return inline || (inline = makeInlineEngine(src)); }
+  var worker = null;
+  try { worker = makeWorkerEngine(src); } catch (e) { worker = null; }
+  var useInline = !worker;
+  return {
+    load: function (file) {
+      if (useInline) return getInline().load(file);
+      return worker.load(file).catch(function (e) {
+        if (e && e.workerFail) {
+          worker.dispose();
+          useInline = true;
+          return getInline().load(file);
+        }
+        throw e;
+      });
+    },
+    analyze: function (ids, year) {
+      return (useInline ? getInline() : worker).analyze(ids, year);
+    },
+    dispose: function () {
+      if (worker && typeof worker.dispose === 'function') worker.dispose();
+      if (inline && typeof inline.dispose === 'function') inline.dispose();
+    }
+  };
+}
+
+/* ---------------- UI plumbing ---------------- */
+function showStep(name) {
+  ['start', 'loading', 'pick', 'result'].forEach(function (s) { $('s-' + s).hidden = (s !== name); });
+  window.scrollTo(0, 0);
+}
+
+function showError(e) {
+  var msg;
+  var m = (e && e.message) || '';
+  if (m === 'FORMAT') msg = tr('err_format');
+  else if (e && e.name === 'SyntaxError') msg = tr('err_json');
+  else if (/string length|memory|allocation/i.test(m)) msg = tr('err_big');
+  else if (m === 'EMPTY') msg = tr('err_empty');
+  else msg = m || tr('err_json');
+  var box = $('error');
+  box.textContent = msg;
+  box.hidden = false;
+}
+function clearError() { $('error').hidden = true; }
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  $('langSel').value = lang;
+  var seoTitle = tr('seo_title');
+  document.title = seoTitle + ' | TG Wrapped';
+  var desc = document.querySelector('meta[name="description"]'); if (desc) desc.content = tr('seo_desc');
+  var ogt = document.querySelector('meta[property="og:title"]'); if (ogt) ogt.content = document.title;
+  var ogd = document.querySelector('meta[property="og:description"]'); if (ogd) ogd.content = tr('seo_desc');
+  document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = tr(el.getAttribute('data-i18n')); });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function (el) { el.placeholder = tr(el.getAttribute('data-i18n-ph')); });
+  var o = $('yearSel').querySelector('option[value="all"]');
+  if (o) o.textContent = tr('all_time');
+  updateSelCount();
+  if (lastResult && !$('s-result').hidden) renderCards();
+}
+
+function startOver() {
+  fileLoadToken++;
+  if (engine && engine.dispose) engine.dispose();
+  lastResult = null; chats = []; selected.clear(); engine = null;
+  $('file').value = '';
+  clearError();
+  freeBlobs();
+  $('grid').textContent = '';
+  showStep('start');
+}
+
+function handleFile(file) {
+  if (!file) return;
+  var token = ++fileLoadToken;
+  if (engine && engine.dispose) engine.dispose();
+  clearError();
+  engine = createEngine();
+  var currentEngine = engine;
+  showStep('loading');
+  currentEngine.load(file).then(function (list) {
+    if (token !== fileLoadToken || currentEngine !== engine) return;
+    chats = list;
+    initPicker();
+    showStep('pick');
+  }).catch(function (e) {
+    if (token !== fileLoadToken || currentEngine !== engine || (e && e.message === 'CANCELLED')) return;
+    showStep('start');
+    showError(e);
+  });
+}
+
+/* ---------------- picker ---------------- */
+function countFor(c) { return yearSel === 'all' ? c.total : (c.years[yearSel] || 0); }
+
+function initPicker() {
+  var ys = {};
+  chats.forEach(function (c) { for (var y in c.years) ys[y] = (ys[y] || 0) + c.years[y]; });
+  var years = Object.keys(ys).sort(function (a, b) { return b - a; });
+  var cur = String(new Date().getFullYear());
+  yearSel = ys[cur] ? cur : (years[0] || 'all');
+  var sel = $('yearSel');
+  sel.textContent = '';
+  years.forEach(function (y) {
+    var o = document.createElement('option'); o.value = y; o.textContent = y; sel.appendChild(o);
+  });
+  var all = document.createElement('option'); all.value = 'all'; all.textContent = tr('all_time'); sel.appendChild(all);
+  sel.value = yearSel;
+  $('q').value = '';
+  pickDefault();
+  renderChatList();
+}
+
+function pickDefault() {
+  selected.clear();
+  var best = null;
+  chats.forEach(function (c) { if (!best || countFor(c) > countFor(best)) best = c; });
+  if (best && countFor(best) > 0) selected.add(best.id);
+}
+
+function updateSelCount() {
+  $('selCount').textContent = tr('n_selected', { n: selected.size });
+  $('go').disabled = selected.size === 0;
+}
+
+function renderChatList() {
+  var list = $('list');
+  list.textContent = '';
+  var q = $('q').value.trim().toLowerCase();
+  var rows = chats.filter(function (c) {
+    return countFor(c) > 0 && (!q || c.name.toLowerCase().indexOf(q) !== -1);
+  }).sort(function (a, b) { return countFor(b) - countFor(a); }).slice(0, 300);
+  rows.forEach(function (c) {
+    var row = document.createElement('label'); row.className = 'item';
+    var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = selected.has(c.id);
+    cb.addEventListener('change', function () {
+      if (cb.checked) selected.add(c.id); else selected.delete(c.id);
+      updateSelCount();
+    });
+    var nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = c.name;
+    var ct = document.createElement('span'); ct.className = 'ct'; ct.textContent = nfmt(countFor(c)) + ' ' + tr('msgs_short');
+    row.appendChild(cb); row.appendChild(nm); row.appendChild(ct);
+    list.appendChild(row);
+  });
+  updateSelCount();
+}
+
+/* ---------------- sample data ---------------- */
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    var t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function isoLocal(ts) {
+  var d = new Date(ts);
+  return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()) + 'T' + pad2(d.getHours()) + ':' + pad2(d.getMinutes()) + ':' + pad2(d.getSeconds());
+}
+function makeSample() {
+  var rnd = mulberry32(7);
+  var people = [{ n: 'Alex', id: 'user1' }, { n: 'Sam', id: 'user2' }];
+  var vocab = ['coffee', 'tonight', 'project', 'weekend', 'movie', 'lunch', 'later', 'sounds', 'great', 'deadline', 'travel', 'music', 'football', 'meeting', 'dinner', 'birthday', 'working', 'tomorrow', 'finally', 'awesome'];
+  var emo = ['😂', '❤️', '🔥', '😅', '👍', '🥲', '✨', '🙏'];
+  var yr = new Date().getFullYear();
+  var start = new Date(yr, 0, 1).getTime(), end = Math.min(Date.now(), new Date(yr, 11, 31).getTime());
+  var msgs = [], id = 1;
+  for (var day = start; day <= end; day += 864e5) {
+    if (rnd() > 0.86) continue;
+    var sessions = 1 + Math.floor(rnd() * 3);
+    for (var s = 0; s < sessions; s++) {
+      var hour = rnd() < 0.55 ? 18 + Math.floor(rnd() * 6) : Math.floor(rnd() * 18);
+      var ts = day + hour * 3600e3 + Math.floor(rnd() * 3600e3);
+      var who = rnd() < 0.55 ? 0 : 1;
+      var n = 4 + Math.floor(rnd() * 24);
+      for (var i = 0; i < n; i++) {
+        if (rnd() < 0.4) who = 1 - who;
+        ts += 15e3 + Math.floor(rnd() * 400e3);
+        var m = { id: id++, type: 'message', date: isoLocal(ts), date_unixtime: String(Math.floor(ts / 1000)), from: people[who].n, from_id: people[who].id };
+        var r = rnd();
+        if (r < 0.05) { m.media_type = 'voice_message'; m.text = ''; }
+        else if (r < 0.09) { m.media_type = 'sticker'; m.text = ''; }
+        else if (r < 0.12) { m.photo = 'photos/x.jpg'; m.text = ''; }
+        else {
+          var k = 1 + Math.floor(rnd() * 6), words = [];
+          for (var w = 0; w < k; w++) words.push(vocab[Math.floor(rnd() * vocab.length)]);
+          if (rnd() < 0.3) words.push(emo[Math.floor(rnd() * emo.length)]);
+          m.text = words.join(' ');
+        }
+        msgs.push(m);
+      }
+    }
+  }
+  var json = JSON.stringify({ name: tr('sample_name'), type: 'personal_chat', id: 1, messages: msgs });
+  return new File([json], 'sample.json', { type: 'application/json' });
+}
+
+/* ---------------- canvas drawing helpers ---------------- */
+var THEMES = [['#1d2671', '#c33764'], ['#0f2027', '#2c5364'], ['#42275a', '#734b6d'], ['#134e5e', '#2e8b6a'],
+  ['#232526', '#4a4e69'], ['#c31432', '#240b36'], ['#1f4037', '#2b7a78'], ['#373b44', '#4286f4'],
+  ['#ff512f', '#b3125e'], ['#16222a', '#3a6073']];
+var RTL = false, XS = PAD, XE = W - PAD, AS = 'start', AE = 'end';
+
+function setDir() { RTL = lang === 'ar'; XS = RTL ? W - PAD : PAD; XE = RTL ? PAD : W - PAD; }
+
+function text(ctx, s, x, y, o) {
+  o = o || {};
+  var size = o.size || 48, weight = o.weight || 600;
+  var fam = o.emoji ? EMOJI_FONT : FONT;
+  ctx.font = weight + ' ' + size + 'px ' + fam;
+  if (o.maxW) {
+    while (size > 18 && ctx.measureText(s).width > o.maxW) { size -= 2; ctx.font = weight + ' ' + size + 'px ' + fam; }
+  }
+  ctx.fillStyle = o.color || '#fff';
+  ctx.globalAlpha = o.alpha == null ? 1 : o.alpha;
+  ctx.textAlign = o.align || 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.direction = RTL ? 'rtl' : 'ltr';
+  ctx.fillText(s, x, y);
+  ctx.globalAlpha = 1;
+  return size;
+}
+
+function wrap(ctx, s, x, y, maxW, lh, o) {
+  o = o || {};
+  ctx.font = (o.weight || 600) + ' ' + (o.size || 48) + 'px ' + FONT;
+  var words = String(s).split(' '), line = '', yy = y, lines = [];
+  words.forEach(function (w) {
+    var test = line ? line + ' ' + w : w;
+    if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; } else line = test;
+  });
+  if (line) lines.push(line);
+  lines.slice(0, 4).forEach(function (l) { text(ctx, l, x, yy, o); yy += lh; });
+  return yy;
+}
+
+function rrect(ctx, x, y, w, h, r) {
+  r = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+}
+
+function paint(ctx, i) {
+  var th = THEMES[i % THEMES.length];
+  var g = ctx.createLinearGradient(0, 0, W * 0.6, H);
+  g.addColorStop(0, th[0]); g.addColorStop(1, th[1]);
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#fff';
+  ctx.globalAlpha = 0.09;
+  ctx.beginPath(); ctx.arc(W * 0.92, H * 0.1, 330, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(W * 0.04, H * 0.84, 270, 0, Math.PI * 2); ctx.fill();
+  ctx.globalAlpha = 1;
+  text(ctx, SITE_NAME.toUpperCase(), XS, 140, { size: 34, weight: 800, align: AS, alpha: 0.75 });
+  text(ctx, SITE_URL, W / 2, H - 96, { size: 36, weight: 600, alpha: 0.7 });
+}
+
+function bar(ctx, y, frac) {
+  ctx.fillStyle = 'rgba(255,255,255,0.18)';
+  rrect(ctx, PAD, y, BW, 24, 12); ctx.fill();
+  var w = Math.max(24, BW * Math.max(0, Math.min(1, frac)));
+  ctx.fillStyle = '#fff';
+  rrect(ctx, RTL ? W - PAD - w : PAD, y, w, 24, 12); ctx.fill();
+}
+
+function rows(ctx, items, y0, step) {
+  items.forEach(function (it, i) {
+    var y = y0 + i * step;
+    text(ctx, it.label, XS, y, { size: 56, weight: 700, align: AS, maxW: 600 });
+    text(ctx, it.right, XE, y, { size: 46, weight: 600, align: AE, alpha: 0.9, maxW: 380 });
+    if (it.frac != null) bar(ctx, y + 34, it.frac);
+  });
+}
+
+function hist(ctx, arr, baseY, maxH, labels, hi) {
+  var n = arr.length, slot = BW / n, bw = slot - 8, mx = Math.max.apply(null, arr) || 1;
+  for (var i = 0; i < n; i++) {
+    var h = Math.max(6, (arr[i] / mx) * maxH);
+    var x = RTL ? W - PAD - (i + 1) * slot + 4 : PAD + i * slot + 4;
+    ctx.fillStyle = '#fff'; ctx.globalAlpha = i === hi ? 1 : 0.35;
+    rrect(ctx, x, baseY - h, bw, h, Math.min(10, bw / 2)); ctx.fill();
+    ctx.globalAlpha = 1;
+    if (labels[i] != null) text(ctx, labels[i], x + bw / 2, baseY + 54, { size: 30, alpha: 0.8 });
+  }
+}
+
+function fmtDur(ms) {
+  if (ms >= 48 * 3600e3) return { n: Math.round(ms / 864e5), u: tr('days') };
+  if (ms >= 2 * 3600e3) return { n: Math.round(ms / 3600e3), u: tr('hours') };
+  return { n: Math.max(1, Math.round(ms / 60e3)), u: tr('min') };
+}
+function fmtResp(ms) { var d = fmtDur(ms); return d.n + ' ' + d.u; }
+
+/* ---------------- cards ---------------- */
+function buildSpecs(R, hide) {
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', map = {};
+  R.people.forEach(function (p, i) { map[p.name] = hide ? tr('person') + ' ' + letters[i % 26] : p.name; });
+  function A(n) { return map[n] != null ? map[n] : (hide ? tr('person') : n); }
+  var label = R.multi ? tr('chats_n', { n: R.nChats }) : (hide ? tr('this_chat') : R.label);
+  var specs = [];
+  var wk = [];
+  for (var i = 0; i < 7; i++) wk.push(new Intl.DateTimeFormat(loc(), { weekday: 'short' }).format(new Date(2024, 0, 1 + i)));
+
+  specs.push(function (ctx) {
+    paint(ctx, 0);
+    text(ctx, (R.year ? R.year + ' ' + tr('wrapped') : tr('all_wrapped')).toUpperCase(), W / 2, 440, { size: 60, weight: 800, alpha: 0.9 });
+    text(ctx, nfmt(R.total), W / 2, 880, { size: 270, weight: 900, maxW: W - 2 * PAD });
+    text(ctx, tr('c_msgs'), W / 2, 980, { size: 66, weight: 700 });
+    if (label) wrap(ctx, tr('c_in') + ' ' + label, W / 2, 1110, W - 2 * PAD, 76, { size: 56, alpha: 0.92 });
+    text(ctx, dfmt(R.first) + ' - ' + dfmt(R.last), W / 2, 1430, { size: 44, alpha: 0.8 });
+    text(ctx, nfmt(R.activeDays) + ' ' + tr('c_active'), W / 2, 1510, { size: 54, weight: 700 });
+  });
+
+  specs.push(function (ctx) {
+    paint(ctx, 1);
+    text(ctx, tr('c_who'), W / 2, 420, { size: 66, weight: 800, maxW: W - 2 * PAD });
+    var top = R.people.slice(0, 5), mx = top[0].count;
+    rows(ctx, top.map(function (p) {
+      return { label: A(p.name), right: nfmt(p.count) + ' · ' + Math.round(p.share * 100) + '%', frac: p.count / mx };
+    }), 640, 200);
+    if (R.others > 0) text(ctx, '+' + nfmt(R.others), W / 2, 1700, { size: 44, alpha: 0.7 });
+  });
+
+  specs.push(function (ctx) {
+    paint(ctx, 2);
+    text(ctx, tr('c_peak'), W / 2, 420, { size: 64, weight: 800 });
+    text(ctx, pad2(R.peakHour) + ':00', W / 2, 760, { size: 250, weight: 900 });
+    hist(ctx, R.hours, 1380, 480, { 0: '00', 6: '06', 12: '12', 18: '18', 23: '23' }, R.peakHour);
+    wrap(ctx, Math.round(R.nightShare * 100) + '% ' + tr('c_night'), W / 2, 1560, W - 2 * PAD, 62, { size: 46, alpha: 0.92 });
+  });
+
+  specs.push(function (ctx) {
+    paint(ctx, 3);
+    text(ctx, tr('c_week'), W / 2, 420, { size: 64, weight: 800, maxW: W - 2 * PAD });
+    text(ctx, wk[R.peakWeekday], W / 2, 760, { size: 220, weight: 900, maxW: W - 2 * PAD });
+    var lbl = {}; wk.forEach(function (w, i) { lbl[i] = w; });
+    hist(ctx, R.wdays, 1260, 400, lbl, R.peakWeekday);
+    text(ctx, tr('c_busiest'), W / 2, 1480, { size: 46, alpha: 0.8 });
+    text(ctx, dfmt(R.busiest.ts), W / 2, 1560, { size: 62, weight: 800 });
+    text(ctx, nfmt(R.busiest.count) + ' ' + tr('c_msgs'), W / 2, 1635, { size: 44, alpha: 0.85 });
+  });
+
+  specs.push(function (ctx) {
+    paint(ctx, 4);
+    text(ctx, tr('c_start'), W / 2, 420, { size: 66, weight: 800, maxW: W - 2 * PAD });
+    var top = R.people.filter(function (p) { return p.starts > 0; }).sort(function (a, b) { return b.starts - a.starts; }).slice(0, 5);
+    var mx = top.length ? top[0].starts : 1;
+    rows(ctx, top.map(function (p) { return { label: A(p.name), right: nfmt(p.starts), frac: p.starts / mx }; }), 640, 190);
+    if (R.isDuo) {
+      var y = 640 + top.length * 190 + 70;
+      text(ctx, tr('c_reply'), W / 2, y, { size: 52, weight: 800, alpha: 0.9 });
+      R.people.filter(function (p) { return p.medResp != null; }).slice(0, 2).forEach(function (p, i) {
+        text(ctx, A(p.name), XS, y + 90 + i * 84, { size: 48, align: AS, maxW: 520 });
+        text(ctx, fmtResp(p.medResp), XE, y + 90 + i * 84, { size: 48, weight: 800, align: AE });
+      });
+    }
+  });
+
+  specs.push(function (ctx) {
+    paint(ctx, 5);
+    var d = fmtDur(R.silence.ms);
+    text(ctx, tr('c_silence'), W / 2, 420, { size: 66, weight: 800 });
+    text(ctx, String(d.n), W / 2, 760, { size: 260, weight: 900 });
+    text(ctx, d.u, W / 2, 850, { size: 70, weight: 700 });
+    text(ctx, dfmt(R.silence.from) + ' - ' + dfmt(R.silence.to), W / 2, 930, { size: 42, alpha: 0.8 });
+    text(ctx, tr('c_streak'), W / 2, 1210, { size: 66, weight: 800 });
+    text(ctx, String(R.streak.days), W / 2, 1480, { size: 220, weight: 900 });
+    text(ctx, tr('c_streak_u'), W / 2, 1560, { size: 54, weight: 700 });
+  });
+
+  if (R.words.length || R.emojis.length) {
+    specs.push(function (ctx) {
+      paint(ctx, 6);
+      var y = 420;
+      if (R.words.length) {
+        text(ctx, tr('c_words'), W / 2, y, { size: 62, weight: 800, maxW: W - 2 * PAD });
+        var top = R.words.slice(0, 5), mx = top[0][1];
+        rows(ctx, top.map(function (e) { return { label: e[0], right: nfmt(e[1]), frac: e[1] / mx }; }), y + 200, 150);
+        y = y + 200 + top.length * 150 + 40;
+      }
+      if (R.emojis.length) {
+        text(ctx, tr('c_emoji'), W / 2, y + 40, { size: 56, weight: 800, maxW: W - 2 * PAD });
+        var ems = R.emojis.slice(0, 5), slot = BW / 5;
+        ems.forEach(function (e, i) {
+          var cx = PAD + slot * i + slot / 2;
+          text(ctx, e[0], cx, y + 190, { size: 110, emoji: true });
+          text(ctx, nfmt(e[1]), cx, y + 262, { size: 36, alpha: 0.85 });
+        });
+      }
+    });
+  }
+
+  var md = R.media;
+  if (md.voice + md.videoNote + md.sticker + md.photo + md.gif > 0) {
+    specs.push(function (ctx) {
+      paint(ctx, 7);
+      text(ctx, tr('c_media'), W / 2, 420, { size: 66, weight: 800 });
+      var items = [['🎙️', tr('voice'), md.voice], ['📹', tr('vnotes'), md.videoNote], ['🎭', tr('stickers'), md.sticker], ['📷', tr('photos'), md.photo], ['🎞️', tr('gifs'), md.gif]];
+      items.forEach(function (it, i) {
+        var y = 640 + i * 190;
+        text(ctx, it[0], XS, y, { size: 84, emoji: true, align: AS });
+        text(ctx, it[1], RTL ? XS - 130 : XS + 130, y - 4, { size: 52, weight: 700, align: AS, maxW: 460 });
+        text(ctx, nfmt(it[2]), XE, y - 4, { size: 70, weight: 900, align: AE });
+      });
+    });
+  }
+
+  if (R.awards.length) {
+    specs.push(function (ctx) {
+      paint(ctx, 8);
+      text(ctx, tr('c_awards'), W / 2, 420, { size: 72, weight: 900 });
+      R.awards.slice(0, 5).forEach(function (a, i) {
+        var y = 600 + i * 230, v;
+        if (a.key === 'chatter') v = nfmt(a.value) + ' ' + tr('v_msgs');
+        else if (a.key === 'starter') v = nfmt(a.value) + ' ' + tr('v_starts');
+        else if (a.key === 'night') v = Math.round(a.value * 100) + '% ' + tr('v_night');
+        else if (a.key === 'essay') v = Math.round(a.value) + ' ' + tr('v_chars');
+        else if (a.key === 'voice') v = nfmt(a.value) + ' ' + tr('v_voice');
+        else v = fmtResp(a.value) + ' ' + tr('v_reply');
+        text(ctx, tr('a_' + a.key), W / 2, y, { size: 44, weight: 700, alpha: 0.8 });
+        text(ctx, A(a.name), W / 2, y + 78, { size: 72, weight: 900, maxW: W - 2 * PAD });
+        text(ctx, v, W / 2, y + 140, { size: 38, alpha: 0.85, maxW: W - 2 * PAD });
+      });
+    });
+  }
+
+  specs.push(function (ctx) {
+    paint(ctx, 9);
+    text(ctx, SITE_NAME, W / 2, 800, { size: 130, weight: 900, maxW: W - 2 * PAD });
+    text(ctx, tr('make_yours'), W / 2, 960, { size: 56, alpha: 0.9 });
+    text(ctx, SITE_URL, W / 2, 1050, { size: 64, weight: 800, maxW: W - 2 * PAD });
+    text(ctx, tr('ran_local'), W / 2, 1300, { size: 42, alpha: 0.75, maxW: W - 2 * PAD });
+  });
+
+  return specs;
+}
+
+function toBlob(canvas) {
+  return new Promise(function (resolve) { canvas.toBlob(resolve, 'image/png'); });
+}
+function freeBlobs() {
+  blobUrls.forEach(function (u) { URL.revokeObjectURL(u); });
+  blobUrls = []; cardBlobs = [];
+}
+function saveBlob(blob, name) {
+  var u = URL.createObjectURL(blob);
+  var a = document.createElement('a'); a.href = u; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+}
+function shareBlob(blob, name) {
+  var f = new File([blob], name, { type: 'image/png' });
+  if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], title: SITE_NAME }).catch(function () {});
+  saveBlob(blob, name);
+  return Promise.resolve();
+}
+
+function renderCards() {
+  var token = ++renderToken;
+  setDir();
+  freeBlobs();
+  var grid = $('grid');
+  grid.textContent = '';
+  var specs = buildSpecs(lastResult, $('hide').checked);
+  var canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  var ctx = canvas.getContext('2d');
+  var chain = Promise.resolve();
+  specs.forEach(function (draw, idx) {
+    chain = chain.then(function () {
+      if (token !== renderToken) return;
+      ctx.clearRect(0, 0, W, H);
+      draw(ctx);
+      return toBlob(canvas).then(function (blob) {
+        if (token !== renderToken) return;
+        var url = URL.createObjectURL(blob);
+        blobUrls.push(url); cardBlobs.push(blob);
+        var name = 'tg-wrapped-' + (idx + 1) + '.png';
+        var box = document.createElement('div'); box.className = 'cardbox';
+        var img = document.createElement('img'); img.src = url; img.alt = 'card ' + (idx + 1);
+        var acts = document.createElement('div'); acts.className = 'acts';
+        var b1 = document.createElement('button'); b1.className = 'small'; b1.type = 'button'; b1.textContent = tr('download');
+        b1.addEventListener('click', function () { saveBlob(blob, name); });
+        acts.appendChild(b1);
+        if (navigator.share) {
+          var b2 = document.createElement('button'); b2.className = 'small ghost'; b2.type = 'button'; b2.textContent = tr('share');
+          b2.addEventListener('click', function () { shareBlob(blob, name); });
+          acts.appendChild(b2);
+        }
+        box.appendChild(img); box.appendChild(acts); grid.appendChild(box);
+      });
+    });
+  });
+  return chain;
+}
+
+function downloadAll() {
+  cardBlobs.forEach(function (b, i) {
+    setTimeout(function () { saveBlob(b, 'tg-wrapped-' + (i + 1) + '.png'); }, i * 450);
+  });
+}
+
+function generate() {
+  clearError();
+  $('loadingText').textContent = tr('loading');
+  showStep('loading');
+  var ids = Array.from(selected);
+  engine.analyze(ids, yearSel === 'all' ? 0 : +yearSel).then(function (res) {
+    if (!res || res.empty) { showStep('pick'); showError(new Error('EMPTY')); return; }
+    lastResult = res;
+    showStep('result');
+    return renderCards();
+  }).catch(function (e) { showStep('pick'); showError(e); });
+}
+
+/* ---------------- wire up ---------------- */
+$('file').addEventListener('change', function (e) { handleFile(e.target.files[0]); });
+var drop = $('drop');
+drop.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    $('file').click();
+  }
+});
+['dragenter', 'dragover'].forEach(function (ev) {
+  drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); });
+});
+['dragleave', 'drop'].forEach(function (ev) {
+  drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); });
+});
+drop.addEventListener('drop', function (e) { handleFile(e.dataTransfer.files[0]); });
+$('sampleBtn').addEventListener('click', function () { handleFile(makeSample()); });
+$('yearSel').addEventListener('change', function () { yearSel = $('yearSel').value; pickDefault(); renderChatList(); });
+$('q').addEventListener('input', renderChatList);
+$('selAll').addEventListener('click', function () {
+  chats.forEach(function (c) { if (countFor(c) > 0) selected.add(c.id); });
+  renderChatList();
+});
+$('selNone').addEventListener('click', function () { selected.clear(); renderChatList(); });
+$('go').addEventListener('click', generate);
+$('back1').addEventListener('click', startOver);
+$('back2').addEventListener('click', startOver);
+$('dlAll').addEventListener('click', downloadAll);
+$('hide').addEventListener('change', function () { if (lastResult && !$('s-result').hidden) renderCards(); });
+$('langSel').addEventListener('change', function () {
+  lang = $('langSel').value;
+  try { localStorage.setItem('lang', lang); } catch (e) {}
+  applyLang();
+});
+
+applyLang();
+})();
+</script>
+</body>
+</html>
