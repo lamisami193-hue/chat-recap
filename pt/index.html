@@ -48,7 +48,7 @@ h2{font-size:22px;margin:0 0 12px}
 button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:12px 18px;color:#fff;background:linear-gradient(90deg,var(--a1),var(--a2));font-weight:700}
 button:disabled{opacity:.45;cursor:not-allowed}
 button.ghost{background:var(--panel2);color:var(--text);font-weight:600;padding:8px 14px}
-.lang-wrap{display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid #5665a8;border-radius:12px;background:var(--panel2);box-shadow:0 0 0 1px rgba(124,92,255,.12)}.lang-wrap .lang-icon{font-size:18px;line-height:1}.lang-wrap .field{min-width:0!important;gap:2px}.lang-wrap .hint{font-size:11px;line-height:1.2}.lang-wrap select{min-width:125px;border:0;background:transparent;padding:4px 22px 4px 4px;font-weight:700;cursor:pointer}.lang-wrap select:focus-visible{outline:2px solid var(--a2);outline-offset:2px}
+.lang-dropdown{position:relative}.lang-button{display:flex;align-items:center;gap:8px;background:var(--panel2);color:var(--text);border:1px solid #5665a8;border-radius:12px;padding:11px 15px;font-weight:800;white-space:nowrap;box-shadow:0 0 0 1px rgba(124,92,255,.12)}.lang-button:hover{border-color:var(--a2)}.lang-menu{position:absolute;z-index:20;right:0;top:calc(100% + 8px);min-width:180px;padding:6px;background:var(--panel);border:1px solid #3a4580;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.4)}.lang-menu[hidden]{display:none!important}.lang-menu button{display:block;width:100%;text-align:start;background:transparent;color:var(--text);border-radius:9px;padding:10px 12px;font-weight:650}.lang-menu button:hover,.lang-menu button:focus-visible{background:var(--panel2);outline:2px solid #5665a8}.lang-dropdown select[hidden]{display:none!important}
 button.small{padding:8px 12px;font-size:14px}
 .drop{display:block;border:2px dashed #3a4580;border-radius:var(--r);padding:34px 18px;text-align:center;background:var(--panel);cursor:pointer;transition:.15s}
 .drop.over{border-color:var(--a2);background:var(--panel2)}
@@ -91,7 +91,17 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
 <body>
 <header class="top">
   <div class="brand">TG Wrapped</div>
-  <div class="lang-wrap"><span class="lang-icon" aria-hidden="true">🌐</span><label class="field"><span class="hint" data-i18n="language_label">Language / اللغة</span><select id="langSel" aria-label="Change language"><option value="en">English</option><option value="ar">العربية</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option></select></label></div>
+  <div class="lang-dropdown">
+    <button type="button" id="langButton" class="lang-button" aria-haspopup="true" aria-expanded="false">🌐 Languages ▾</button>
+    <div id="langMenu" class="lang-menu" hidden>
+      <button type="button" data-lang="en">🇬🇧 English</button>
+      <button type="button" data-lang="ar">🇲🇦 العربية</button>
+      <button type="button" data-lang="es">🇪🇸 Español</button>
+      <button type="button" data-lang="fr">🇫🇷 Français</button>
+      <button type="button" data-lang="pt">🇵🇹 Português</button>
+    </div>
+    <select id="langSel" aria-label="Change language" hidden><option value="en">English</option><option value="ar">العربية</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option></select>
+  </div>
 </header>
 
 <main>
@@ -1230,6 +1240,25 @@ $('back1').addEventListener('click', startOver);
 $('back2').addEventListener('click', startOver);
 $('dlAll').addEventListener('click', downloadAll);
 $('hide').addEventListener('change', function () { if (lastResult && !$('s-result').hidden) renderCards(); });
+$('langButton').addEventListener('click', function () {
+  var menu = $('langMenu');
+  menu.hidden = !menu.hidden;
+  $('langButton').setAttribute('aria-expanded', String(!menu.hidden));
+});
+document.querySelectorAll('#langMenu [data-lang]').forEach(function (item) {
+  item.addEventListener('click', function () {
+    $('langSel').value = item.getAttribute('data-lang');
+    $('langMenu').hidden = true;
+    $('langButton').setAttribute('aria-expanded', 'false');
+    $('langSel').dispatchEvent(new Event('change'));
+  });
+});
+document.addEventListener('click', function (event) {
+  if (!event.target.closest('.lang-dropdown')) {
+    $('langMenu').hidden = true;
+    $('langButton').setAttribute('aria-expanded', 'false');
+  }
+});
 $('langSel').addEventListener('change', function () {
   var next = $('langSel').value;
   try { localStorage.setItem('lang', next); } catch (e) {}
