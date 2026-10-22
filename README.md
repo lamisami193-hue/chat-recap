@@ -1,7 +1,24 @@
-# chat-recap
+# TG Wrapped (chat-recap)
 
-A static site: upload a Telegram chat export (result.json) and get shareable "Wrapped"-style cards.
-Everything runs in the browser; no file is uploaded to any server.
+A static, browser-only tool that turns a Telegram Desktop JSON export into shareable story cards.
 
-Files: `index.html` (the whole app, no build step).
-Before launch, set `SITE_URL` near the top of the script in `index.html`.
+**Live site:** https://chat-recap.pages.dev/
+
+## Privacy
+
+- The Telegram export is parsed and analyzed locally in the browser.
+- The app does not upload chat content or call an analytics service.
+- The app clears the parsed chat data from its analysis engine after generating results and disposes the worker when starting over.
+- For extra privacy, export Telegram data as **Machine-readable JSON** without photos, videos, or other media.
+
+## Deploy
+
+The site is served directly from the repository root by Cloudflare Pages; no build command is required. Commits pushed to `main` are deployed automatically.
+
+## Main files
+
+- `index.html` — application, translations, analysis engine, and card renderer.
+- `robots.txt` — crawler access rules.
+- `sitemap.xml` — sitemap for the live site.
+
+The project is not affiliated with Telegram.
