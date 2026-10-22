@@ -10,8 +10,40 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/"/>
   </url>
-  <url><loc>https://tgwrapped.devs.surf/ar/</loc></url>
-  <url><loc>https://tgwrapped.devs.surf/es/</loc></url>
-  <url><loc>https://tgwrapped.devs.surf/fr/</loc></url>
-  <url><loc>https://tgwrapped.devs.surf/pt/</loc></url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/ar/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/"/>
+  </url>
 </urlset>
