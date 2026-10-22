@@ -11,7 +11,7 @@
 <meta name="application-name" content="TG Wrapped">
 <meta name="keywords" content="Telegram Wrapped, Telegram chat recap, Telegram stats, Telegram export analyzer, chat statistics, private chat analysis">
 <link rel="alternate" hreflang="en" href="https://chat-recap.pages.dev/">
-<link rel="alternate" hreflang="ar" href="https://chat-recap.pages.dev/">
+<link rel="alternate" hreflang="ar" href="https://chat-recap.pages.dev/ar/">
 <link rel="alternate" hreflang="es" href="https://chat-recap.pages.dev/es/">
 <link rel="alternate" hreflang="fr" href="https://chat-recap.pages.dev/fr/">
 <link rel="alternate" hreflang="pt" href="https://chat-recap.pages.dev/pt/">
@@ -497,7 +497,7 @@ I18N.fr = Object.assign(I18N.fr, {"seo_title":"Telegram Wrapped gratuit : résum
 I18N.pt = Object.assign(I18N.pt, {"seo_title":"Telegram Wrapped grátis: resumo e estatísticas de conversas","seo_desc":"Crie um resumo privado do Telegram com estatísticas, palavras frequentes, emojis e cartões para partilhar. Gratuito e processado no navegador.","faq_title":"Sobre o Telegram Wrapped","faq_q1":"O que é o Telegram Wrapped?","faq_a1":"O TG Wrapped analisa uma exportação JSON do Telegram Desktop e cria um resumo com mensagens, dias ativos, palavras frequentes, emojis e cartões.","faq_q2":"A minha exportação do Telegram é enviada para algum servidor?","faq_a2":"Não. O ficheiro é processado no navegador e não é enviado para um servidor.","faq_q3":"Como exporto os meus dados do Telegram?","faq_a3":"No Telegram Desktop, abra Definições e Avançadas e escolha Exportar dados do Telegram. Selecione JSON legível por máquina e exclua multimédia para reduzir o tamanho."});
 
 var pathLang = (window.location.pathname.split('/')[1] || '').toLowerCase();
-var isLocalizedPath = ['es','fr','pt'].indexOf(pathLang) !== -1;
+var isLocalizedPath = ['ar','es','fr','pt'].indexOf(pathLang) !== -1;
 var lang = isLocalizedPath ? pathLang : 'en';
 try {
   var saved = localStorage.getItem('lang');
