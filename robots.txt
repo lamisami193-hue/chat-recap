@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chat-recap.pages.dev/sitemap.xml
+Sitemap: https://tgwrapped.devs.surf/sitemap.xml
