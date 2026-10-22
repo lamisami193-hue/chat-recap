@@ -2,7 +2,7 @@
 
 A static, browser-only tool that turns a Telegram Desktop JSON export into shareable story cards.
 
-**Live site:** https://chat-recap.pages.dev/
+**Live site:** https://tgwrapped.devs.surf/
 
 ## Languages and SEO
 
