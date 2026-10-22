@@ -4,6 +4,16 @@ A static, browser-only tool that turns a Telegram Desktop JSON export into share
 
 **Live site:** https://chat-recap.pages.dev/
 
+## Languages and SEO
+
+- English: `/`
+- Arabic: `/ar/`
+- Spanish: `/es/`
+- French: `/fr/`
+- Portuguese: `/pt/`
+
+Each language page has a localized title and description, a canonical URL, alternate-language links, and the sitemap includes all language URLs. The site includes SoftwareApplication structured data and a visible FAQ section.
+
 ## Privacy
 
 - The Telegram export is parsed and analyzed locally in the browser.
