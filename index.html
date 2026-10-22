@@ -1137,8 +1137,11 @@ $('back2').addEventListener('click', startOver);
 $('dlAll').addEventListener('click', downloadAll);
 $('hide').addEventListener('change', function () { if (lastResult && !$('s-result').hidden) renderCards(); });
 $('langSel').addEventListener('change', function () {
-  lang = $('langSel').value;
-  try { localStorage.setItem('lang', lang); } catch (e) {}
+  var next = $('langSel').value;
+  try { localStorage.setItem('lang', next); } catch (e) {}
+  if (['ar','es','fr','pt'].indexOf(next) !== -1 && (!isLocalizedPath || pathLang !== next)) { window.location.href = '/' + next + '/'; return; }
+  if (isLocalizedPath && next === 'en') { window.location.href = '/'; return; }
+  lang = next;
   applyLang();
 });
 
