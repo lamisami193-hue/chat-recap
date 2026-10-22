@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://chat-recap.pages.dev/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://chat-recap.pages.dev/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://chat-recap.pages.dev/ar/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://chat-recap.pages.dev/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://chat-recap.pages.dev/fr/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://chat-recap.pages.dev/pt/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://chat-recap.pages.dev/"/>
+    <loc>https://tgwrapped.devs.surf/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/"/>
   </url>
-  <url><loc>https://chat-recap.pages.dev/ar/</loc></url>
-  <url><loc>https://chat-recap.pages.dev/es/</loc></url>
-  <url><loc>https://chat-recap.pages.dev/fr/</loc></url>
-  <url><loc>https://chat-recap.pages.dev/pt/</loc></url>
+  <url><loc>https://tgwrapped.devs.surf/ar/</loc></url>
+  <url><loc>https://tgwrapped.devs.surf/es/</loc></url>
+  <url><loc>https://tgwrapped.devs.surf/fr/</loc></url>
+  <url><loc>https://tgwrapped.devs.surf/pt/</loc></url>
 </urlset>
