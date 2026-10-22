@@ -289,7 +289,7 @@ function analyze(chats, ids, year) {
   var dayCounts = new Map(), words = new Map(), emojis = new Map();
   var media = { voice: 0, videoNote: 0, sticker: 0, photo: 0, gif: 0, video: 0 };
   var total = 0, first = Infinity, last = -Infinity, night = 0;
-  var allTs = [];
+  var silence = { ms: 0, from: 0, to: 0 };
   var label = ids.length === 1 ? chatTitle(chats[ids[0]], ids[0]) : '';
 
   for (var ci = 0; ci < ids.length; ci++) {
@@ -306,6 +306,12 @@ function analyze(chats, ids, year) {
       msgs.push({ m: m, ts: ts, d: d });
     }
     msgs.sort(function (a, b) { return a.ts - b.ts; });
+    if (msgs.length && !silence.from) silence.from = silence.to = msgs[0].ts;
+    // Measure silence only between messages in this same chat, never across chats.
+    for (var si = 1; si < msgs.length; si++) {
+      var gap = msgs[si].ts - msgs[si - 1].ts;
+      if (gap > silence.ms) silence = { ms: gap, from: msgs[si - 1].ts, to: msgs[si].ts };
+    }
 
     var prev = null;
     for (var j = 0; j < msgs.length; j++) {
@@ -326,7 +332,7 @@ function analyze(chats, ids, year) {
       dayCounts.set(dk, (dayCounts.get(dk) || 0) + 1);
       if (it.ts < first) first = it.ts;
       if (it.ts > last) last = it.ts;
-      allTs.push(it.ts);
+
 
       var mt = m2.media_type;
       if (mt === 'voice_message') { media.voice++; p.voice++; }
@@ -347,13 +353,6 @@ function analyze(chats, ids, year) {
 
   if (!total) return { empty: true };
 
-  var arr = Float64Array.from(allTs);
-  arr.sort();
-  var silence = { ms: 0, from: arr[0], to: arr[0] };
-  for (var k = 1; k < arr.length; k++) {
-    var gap = arr[k] - arr[k - 1];
-    if (gap > silence.ms) silence = { ms: gap, from: arr[k - 1], to: arr[k] };
-  }
 
   var dayKeys = Array.from(dayCounts.keys()).sort(function (a, b) { return a - b; });
   function dayIndex(key) {
