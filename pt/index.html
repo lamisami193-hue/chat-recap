@@ -48,6 +48,7 @@ h2{font-size:22px;margin:0 0 12px}
 button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:12px 18px;color:#fff;background:linear-gradient(90deg,var(--a1),var(--a2));font-weight:700}
 button:disabled{opacity:.45;cursor:not-allowed}
 button.ghost{background:var(--panel2);color:var(--text);font-weight:600;padding:8px 14px}
+.lang-wrap{display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid #5665a8;border-radius:12px;background:var(--panel2);box-shadow:0 0 0 1px rgba(124,92,255,.12)}.lang-wrap .lang-icon{font-size:18px;line-height:1}.lang-wrap .field{min-width:0!important;gap:2px}.lang-wrap .hint{font-size:11px;line-height:1.2}.lang-wrap select{min-width:125px;border:0;background:transparent;padding:4px 22px 4px 4px;font-weight:700;cursor:pointer}.lang-wrap select:focus-visible{outline:2px solid var(--a2);outline-offset:2px}
 button.small{padding:8px 12px;font-size:14px}
 .drop{display:block;border:2px dashed #3a4580;border-radius:var(--r);padding:34px 18px;text-align:center;background:var(--panel);cursor:pointer;transition:.15s}
 .drop.over{border-color:var(--a2);background:var(--panel2)}
@@ -90,7 +91,7 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
 <body>
 <header class="top">
   <div class="brand">TG Wrapped</div>
-  <label class="field" style="min-width:110px"><span class="hint" data-i18n="language_label">Language</span><select id="langSel" aria-label="Language"><option value="en">English</option><option value="ar">العربية</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option></select></label>
+  <div class="lang-wrap"><span class="lang-icon" aria-hidden="true">🌐</span><label class="field"><span class="hint" data-i18n="language_label">Language / اللغة</span><select id="langSel" aria-label="Change language"><option value="en">English</option><option value="ar">العربية</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option></select></label></div>
 </header>
 
 <main>
