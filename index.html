@@ -540,13 +540,18 @@ function makeInlineEngine(src) {
       return file.text().then(function (t) { DATA = JSON.parse(t); return api.chatList(DATA); });
     },
     analyze: function (ids, year) {
-      return new Promise(function (resolve) {
+      return new Promise(function (resolve, reject) {
         setTimeout(function () {
-          if (!DATA) { resolve({ empty: true }); return; }
-          var list = (DATA.chats && DATA.chats.list) ? DATA.chats.list : [DATA];
-          var result = api.analyze(list, ids, year);
-          DATA = null;
-          resolve(result);
+          try {
+            if (!DATA) { resolve({ empty: true }); return; }
+            var list = (DATA.chats && DATA.chats.list) ? DATA.chats.list : [DATA];
+            var result = api.analyze(list, ids, year);
+            DATA = null;
+            resolve(result);
+          } catch (e) {
+            DATA = null;
+            reject(e);
+          }
         }, 20);
       });
     }
