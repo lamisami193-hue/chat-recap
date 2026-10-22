@@ -7,8 +7,18 @@
      If you later add ads or analytics, loosen connect-src / script-src / img-src for those hosts only. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' blob:; style-src 'unsafe-inline'; img-src blob: data:; worker-src blob:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
-<title>TG Wrapped - your Telegram chats, wrapped</title>
-<meta name="description" content="Turn a Telegram chat export into shareable story cards. Private: everything runs in your browser.">
+<title>Telegram Wrapped — Private Chat Recap & Story Cards | TG Wrapped</title>
+<meta name="description" content="Make a fun Telegram Wrapped from your chat export. See message stats, top words, emojis and shareable story cards. Free, private and processed in your browser.">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="canonical" href="https://chat-recap.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chat-recap.pages.dev/">
+<meta property="og:title" content="Telegram Wrapped — TG Wrapped">
+<meta property="og:description" content="Turn your Telegram chat export into fun, shareable story cards. Your file stays on your device.">
+<meta property="og:site_name" content="TG Wrapped">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Telegram Wrapped — TG Wrapped">
+<meta name="twitter:description" content="Create a private, shareable recap of your Telegram chats in your browser.">
 <style>
 :root{
   --bg:#0b0f1a; --panel:#141a2b; --panel2:#1b2340; --text:#eef1ff; --muted:#9aa3c7;
@@ -31,7 +41,10 @@ button.ghost{background:var(--panel2);color:var(--text);font-weight:600;padding:
 button.small{padding:8px 12px;font-size:14px}
 .drop{display:block;border:2px dashed #3a4580;border-radius:var(--r);padding:34px 18px;text-align:center;background:var(--panel);cursor:pointer;transition:.15s}
 .drop.over{border-color:var(--a2);background:var(--panel2)}
-.drop input{display:none}
+.drop input{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.drop:focus-visible{outline:3px solid var(--a2);outline-offset:4px}
+button:focus-visible,select:focus-visible,input[type=search]:focus-visible{outline:3px solid var(--a2);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
 .drop .big{font-weight:800;font-size:20px;display:block;margin-bottom:6px}
 .drop .small{color:var(--muted);font-size:14px}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
@@ -75,10 +88,10 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
     <h1 data-i18n="tagline">Your Telegram chats, wrapped.</h1>
     <p class="sub" data-i18n="sub"></p>
 
-    <label class="drop" id="drop">
+    <label class="drop" id="drop" tabindex="0" role="button" aria-describedby="drop-help">
       <input id="file" type="file" accept=".json,application/json">
       <span class="big" data-i18n="choose"></span>
-      <span class="small" data-i18n="drop"></span>
+      <span class="small" id="drop-help" data-i18n="drop"></span>
     </label>
 
     <div class="row">
@@ -376,7 +389,7 @@ function analyze(chats, ids, year) {
 'use strict';
 
 var SITE_NAME = 'TG Wrapped';
-var SITE_URL = 'your-domain.com';   // TODO: replace with your real domain before launch
+var SITE_URL = 'chat-recap.pages.dev';
 var FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", "Noto Sans", Arial, sans-serif';
 var EMOJI_FONT = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
 var W = 1080, H = 1920, PAD = 96, BW = W - 2 * PAD;
@@ -480,13 +493,13 @@ function pad2(n) { return (n < 10 ? '0' : '') + n; }
 function $(id) { return document.getElementById(id); }
 
 /* ---------------- state ---------------- */
-var engine = null, chats = [], selected = new Set(), yearSel = 'all';
+var engine = null, chats = [], selected = new Set(), yearSel = 'all', fileLoadToken = 0;
 var lastResult = null, blobUrls = [], renderToken = 0, cardBlobs = [];
 
 /* ---------------- engine (worker with inline fallback) ---------------- */
 var WORKER_GLUE = '\nvar DATA=null;\nself.onmessage=async function(e){var m=e.data;try{' +
   'if(m.type==="load"){var text=await m.file.text();DATA=JSON.parse(text);text=null;self.postMessage({type:"loaded",chats:chatList(DATA)});}' +
-  'else if(m.type==="analyze"){var list=(DATA.chats&&DATA.chats.list)?DATA.chats.list:[DATA];self.postMessage({type:"result",result:analyze(list,m.ids,m.year)});}' +
+  'else if(m.type==="analyze"){var list=(DATA.chats&&DATA.chats.list)?DATA.chats.list:[DATA];var result=analyze(list,m.ids,m.year);DATA=null;self.postMessage({type:"result",result:result});}' +
   '}catch(err){self.postMessage({type:"error",name:String(err&&err.name||""),message:String(err&&err.message||err)});}};';
 
 function makeWorkerEngine(src) {
@@ -509,7 +522,12 @@ function makeWorkerEngine(src) {
   }
   return {
     load: function (file) { return call({ type: 'load', file: file }).then(function (m) { return m.chats; }); },
-    analyze: function (ids, year) { return call({ type: 'analyze', ids: ids, year: year }).then(function (m) { return m.result; }); }
+    analyze: function (ids, year) { return call({ type: 'analyze', ids: ids, year: year }).then(function (m) { return m.result; }); },
+    dispose: function () {
+      w.terminate();
+      URL.revokeObjectURL(url);
+      if (pending) { pending.reject(new Error('CANCELLED')); pending = null; }
+    }
   };
 }
 
@@ -517,14 +535,18 @@ function makeInlineEngine(src) {
   var api = new Function(src + '\nreturn {chatList:chatList,analyze:analyze};')();
   var DATA = null;
   return {
+    dispose: function () { DATA = null; },
     load: function (file) {
       return file.text().then(function (t) { DATA = JSON.parse(t); return api.chatList(DATA); });
     },
     analyze: function (ids, year) {
       return new Promise(function (resolve) {
         setTimeout(function () {
+          if (!DATA) { resolve({ empty: true }); return; }
           var list = (DATA.chats && DATA.chats.list) ? DATA.chats.list : [DATA];
-          resolve(api.analyze(list, ids, year));
+          var result = api.analyze(list, ids, year);
+          DATA = null;
+          resolve(result);
         }, 20);
       });
     }
@@ -542,12 +564,20 @@ function createEngine() {
     load: function (file) {
       if (useInline) return getInline().load(file);
       return worker.load(file).catch(function (e) {
-        if (e && e.workerFail) { useInline = true; return getInline().load(file); }
+        if (e && e.workerFail) {
+          worker.dispose();
+          useInline = true;
+          return getInline().load(file);
+        }
         throw e;
       });
     },
     analyze: function (ids, year) {
       return (useInline ? getInline() : worker).analyze(ids, year);
+    },
+    dispose: function () {
+      if (worker && typeof worker.dispose === 'function') worker.dispose();
+      if (inline && typeof inline.dispose === 'function') inline.dispose();
     }
   };
 }
@@ -585,6 +615,8 @@ function applyLang() {
 }
 
 function startOver() {
+  fileLoadToken++;
+  if (engine && engine.dispose) engine.dispose();
   lastResult = null; chats = []; selected.clear(); engine = null;
   $('file').value = '';
   clearError();
@@ -595,14 +627,19 @@ function startOver() {
 
 function handleFile(file) {
   if (!file) return;
+  var token = ++fileLoadToken;
+  if (engine && engine.dispose) engine.dispose();
   clearError();
   engine = createEngine();
+  var currentEngine = engine;
   showStep('loading');
-  engine.load(file).then(function (list) {
+  currentEngine.load(file).then(function (list) {
+    if (token !== fileLoadToken || currentEngine !== engine) return;
     chats = list;
     initPicker();
     showStep('pick');
   }).catch(function (e) {
+    if (token !== fileLoadToken || currentEngine !== engine || (e && e.message === 'CANCELLED')) return;
     showStep('start');
     showError(e);
   });
@@ -1035,6 +1072,12 @@ function generate() {
 /* ---------------- wire up ---------------- */
 $('file').addEventListener('change', function (e) { handleFile(e.target.files[0]); });
 var drop = $('drop');
+drop.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    $('file').click();
+  }
+});
 ['dragenter', 'dragover'].forEach(function (ev) {
   drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); });
 });
