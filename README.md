@@ -30,5 +30,8 @@ The site is served directly from the repository root by Cloudflare Pages; no bui
 - `index.html` — application, translations, analysis engine, and card renderer.
 - `robots.txt` — crawler access rules.
 - `sitemap.xml` — sitemap for the live site.
+- `tests/stats.test.cjs` — regression tests for export dates, silence calculations, media cards, and invalid input.
+
+Run the regression tests with `npm test` using Node.js 18 or newer.
 
 The project is not affiliated with Telegram.
