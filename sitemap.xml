@@ -48,11 +48,137 @@
   </url>
   <url>
     <loc>https://tgwrapped.devs.surf/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/about/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/about/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/about/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/ar/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/about/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/about/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/about/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/es/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/about/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/about/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/about/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/fr/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/about/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/about/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/about/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/pt/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/about/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/about/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/about/"/>
   </url>
   <url>
     <loc>https://tgwrapped.devs.surf/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/privacy/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/ar/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/privacy/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/es/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/privacy/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/fr/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/privacy/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/pt/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/privacy/"/>
   </url>
   <url>
     <loc>https://tgwrapped.devs.surf/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/terms/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/terms/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/terms/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/ar/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/terms/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/terms/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/terms/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/es/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/terms/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/terms/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/terms/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/fr/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/terms/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/terms/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/terms/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/pt/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/terms/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/terms/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/terms/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/terms/"/>
   </url>
 </urlset>
