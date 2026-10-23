@@ -189,7 +189,7 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
 <footer><span data-i18n="footer"></span><nav class="legal" style="margin-top:8px"><a href="/pt/about/" style="color:inherit;margin:0 8px">Sobre</a><a href="/pt/privacy/" style="color:inherit;margin:0 8px">Política de privacidade</a><a href="/pt/terms/" style="color:inherit;margin:0 8px">Termos de uso</a></nav></footer>
 
 <!-- ============================ STATS ENGINE ============================
-     Pure JS, no DOM. Runs inside a Web Worker (or inline as a fallback) and is unit-tested in Node. -->
+     Pure JS, no DOM. Runs inside a Web Worker (or inline as a fallback). -->
 <script id="stats-src" type="text/plain">
 var GAP_MS = 6 * 3600 * 1000;
 var URL_RE = /https?:\/\/\S+|www\.\S+|t\.me\/\S+/gi;
@@ -209,7 +209,10 @@ function parseTs(m) {
     var r = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/.exec(d);
     if (r) return new Date(+r[1], +r[2] - 1, +r[3], +r[4], +r[5], +r[6]).getTime();
   }
-  if (m.date_unixtime) return Number(m.date_unixtime) * 1000;
+  if (m.date_unixtime !== undefined && m.date_unixtime !== null && m.date_unixtime !== '') {
+    var seconds = Number(m.date_unixtime);
+    if (Number.isFinite(seconds) && seconds > 0) return seconds * 1000;
+  }
   return NaN;
 }
 
@@ -240,8 +243,10 @@ function chatList(data) {
     var years = {}, total = 0, msgs = c.messages || [];
     for (var k = 0; k < msgs.length; k++) {
       var m = msgs[k];
-      if (m.type !== 'message' || typeof m.date !== 'string') continue;
-      var y = m.date.slice(0, 4);
+      if (m.type !== 'message') continue;
+      var ts = parseTs(m);
+      if (!(ts > 0)) continue;
+      var y = String(new Date(ts).getFullYear());
       years[y] = (years[y] || 0) + 1;
       total++;
     }
@@ -450,9 +455,9 @@ var I18N = {
     wrapped: 'Wrapped', all_wrapped: 'All-time Wrapped', c_msgs: 'messages', c_in: 'in', c_active: 'active days',
     c_who: 'Who talks the most', c_peak: 'Your peak hour', c_night: 'of messages were sent between midnight and 5am',
     c_week: 'Your busiest weekday', c_busiest: 'Busiest day', c_start: 'Who starts the conversation',
-    c_reply: 'Typical reply time', c_silence: 'Longest silence', c_streak: 'Longest streak', c_streak_u: 'days in a row',
+    c_reply: 'Typical reply time', c_silence: 'Longest silence', not_enough_data: 'Not enough messages', c_streak: 'Longest streak', c_streak_u: 'days in a row',
     c_words: 'Most used words', c_emoji: 'Most used emoji', c_media: 'Media and more',
-    voice: 'Voice messages', vnotes: 'Video messages', stickers: 'Stickers', photos: 'Photos', gifs: 'GIFs',
+    voice: 'Voice messages', vnotes: 'Video messages', stickers: 'Stickers', photos: 'Photos', gifs: 'GIFs', videos: 'Video files',
     c_awards: 'The awards', a_chatter: 'Chatterbox', a_starter: 'Conversation starter', a_night: 'Night owl',
     a_essay: 'Essay writer', a_voice: 'Voice-note fan', a_fast: 'Fast replier',
     v_msgs: 'messages', v_chars: 'characters per message', v_starts: 'conversations started',
@@ -487,9 +492,9 @@ var I18N = {
     wrapped: 'ملخص', all_wrapped: 'ملخص كل الأوقات', c_msgs: 'رسالة', c_in: 'في', c_active: 'يوم نشاط',
     c_who: 'من يتكلم أكثر', c_peak: 'ساعة الذروة', c_night: 'من الرسائل أُرسلت بين منتصف الليل والخامسة فجراً',
     c_week: 'أنشط أيام الأسبوع', c_busiest: 'أنشط يوم', c_start: 'من يبدأ الحديث',
-    c_reply: 'زمن الرد المعتاد', c_silence: 'أطول صمت', c_streak: 'أطول سلسلة', c_streak_u: 'يوماً متتالياً',
+    c_reply: 'زمن الرد المعتاد', c_silence: 'أطول صمت', not_enough_data: 'رسائل غير كافية', c_streak: 'أطول سلسلة', c_streak_u: 'يوماً متتالياً',
     c_words: 'أكثر الكلمات استخداماً', c_emoji: 'أكثر الرموز استخداماً', c_media: 'الوسائط وأكثر',
-    voice: 'رسائل صوتية', vnotes: 'رسائل فيديو', stickers: 'ملصقات', photos: 'صور', gifs: 'صور متحركة',
+    voice: 'رسائل صوتية', vnotes: 'رسائل فيديو', stickers: 'ملصقات', photos: 'صور', gifs: 'صور متحركة', videos: 'ملفات فيديو',
     c_awards: 'الجوائز', a_chatter: 'ثرثار المحادثة', a_starter: 'صاحب البداية', a_night: 'بومة الليل',
     a_essay: 'كاتب المقالات', a_voice: 'عاشق الصوتيات', a_fast: 'سريع الرد',
     v_msgs: 'رسالة', v_chars: 'حرفاً في الرسالة', v_starts: 'محادثة بدأها',
@@ -1056,11 +1061,15 @@ function buildSpecs(R, hide) {
 
   specs.push(function (ctx) {
     paint(ctx, 5);
-    var d = fmtDur(R.silence.ms);
     text(ctx, tr('c_silence'), W / 2, 420, { size: 66, weight: 800 });
-    text(ctx, String(d.n), W / 2, 760, { size: 260, weight: 900 });
-    text(ctx, d.u, W / 2, 850, { size: 70, weight: 700 });
-    text(ctx, dfmt(R.silence.from) + ' - ' + dfmt(R.silence.to), W / 2, 930, { size: 42, alpha: 0.8 });
+    if (R.silence.ms > 0) {
+      var d = fmtDur(R.silence.ms);
+      text(ctx, String(d.n), W / 2, 760, { size: 260, weight: 900 });
+      text(ctx, d.u, W / 2, 850, { size: 70, weight: 700 });
+      text(ctx, dfmt(R.silence.from) + ' - ' + dfmt(R.silence.to), W / 2, 930, { size: 42, alpha: 0.8 });
+    } else {
+      text(ctx, tr('not_enough_data'), W / 2, 820, { size: 54, weight: 700, maxW: W - 2 * PAD });
+    }
     text(ctx, tr('c_streak'), W / 2, 1210, { size: 66, weight: 800 });
     text(ctx, String(R.streak.days), W / 2, 1480, { size: 220, weight: 900 });
     text(ctx, tr('c_streak_u'), W / 2, 1560, { size: 54, weight: 700 });
@@ -1089,11 +1098,11 @@ function buildSpecs(R, hide) {
   }
 
   var md = R.media;
-  if (md.voice + md.videoNote + md.sticker + md.photo + md.gif > 0) {
+  if (md.voice + md.videoNote + md.sticker + md.photo + md.gif + md.video > 0) {
     specs.push(function (ctx) {
       paint(ctx, 7);
       text(ctx, tr('c_media'), W / 2, 420, { size: 66, weight: 800 });
-      var items = [['🎙️', tr('voice'), md.voice], ['📹', tr('vnotes'), md.videoNote], ['🎭', tr('stickers'), md.sticker], ['📷', tr('photos'), md.photo], ['🎞️', tr('gifs'), md.gif]];
+      var items = [['🎙️', tr('voice'), md.voice], ['📹', tr('vnotes'), md.videoNote], ['🎭', tr('stickers'), md.sticker], ['📷', tr('photos'), md.photo], ['🎞️', tr('gifs'), md.gif], ['🎬', tr('videos'), md.video]];
       items.forEach(function (it, i) {
         var y = 640 + i * 190;
         text(ctx, it[0], XS, y, { size: 84, emoji: true, align: AS });
