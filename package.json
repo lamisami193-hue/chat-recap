@@ -1,0 +1,7 @@
+{
+  "name": "tg-wrapped",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}
