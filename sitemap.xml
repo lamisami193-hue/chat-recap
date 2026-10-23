@@ -46,4 +46,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/"/>
   </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/about/</loc>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/privacy/</loc>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/terms/</loc>
+  </url>
 </urlset>
