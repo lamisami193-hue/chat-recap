@@ -17,7 +17,7 @@ Each language page has a localized title and description, a canonical URL, alter
 ## Privacy
 
 - The Telegram export is parsed and analyzed locally in the browser.
-- The app does not upload chat content or call an analytics service.
+- The app does not upload chat content. Optional Google Analytics 4 (measurement ID `G-N6T6E3DRT6`) loads only after the visitor accepts the consent banner; it receives anonymous visit data and a few content-free events (`file_loaded`, `cards_generated`, `card_download`, `card_share`, `download_all`, `sample_used`), never chat content.
 - The app clears the parsed chat data from its analysis engine after generating results and disposes the worker when starting over.
 - For extra privacy, export Telegram data as **Machine-readable JSON** without photos, videos, or other media.
 
