@@ -1212,10 +1212,23 @@ function generate() {
   }).catch(function (e) { showStep('pick'); showError(e); });
 }
 
-/* ---------------- analytics (optional, loaded only after the visitor accepts) ----------------
-   Only anonymous page-visit data and a few content-free events are ever sent.
+/* ---------------- analytics ----------------
+   Analytics loads automatically. Only page visits and content-free events are sent.
    Chat files, names and messages are never passed to analytics. */
 var GA_ID = 'G-N6T6E3DRT6';
+var gaLoaded = false;
+function loadGA() {
+  if (gaLoaded) return;
+  gaLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_ID, { anonymize_ip: true });
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID);
+  document.head.appendChild(script);
+}
 function track(name, params) {
   if (!gaLoaded || window['ga-disable-' + GA_ID] === true || !window.gtag) return;
   try { gtag('event', name, params || {}); } catch (e) {}
