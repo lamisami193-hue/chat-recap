@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://www.googletagmanager.com; style-src 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<title>Statistiques Telegram : qui parle le plus ? | TG Wrapped</title>
+<meta name="description" content="Découvrez qui parle le plus dans une discussion Telegram, qui lance les conversations, la rapidité des réponses et vos moments les plus actifs, en privé dans votre navigateur.">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="canonical" href="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/">
+<meta property="og:title" content="Statistiques Telegram : qui parle le plus ?">
+<meta property="og:description" content="Découvrez qui parle le plus dans une discussion Telegram, qui lance les conversations, la rapidité des réponses et vos moments les plus actifs, en privé dans votre navigateur.">
+<meta property="og:site_name" content="TG Wrapped">
+<style>
+:root{--bg:#0b0f1a;--panel:#141a2b;--text:#eef1ff;--muted:#9aa3c7;--a1:#7c5cff;--a2:#ff5c8a;--r:16px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic","Noto Sans",Arial,sans-serif;line-height:1.65}
+body{min-height:100vh;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;max-width:820px;width:100%;margin:0 auto}
+.brand{font-weight:800;letter-spacing:.3px;font-size:20px;text-decoration:none;background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.back{color:var(--muted);font-size:14px;text-decoration:none}
+.back:hover,.back:focus-visible{color:var(--text);text-decoration:underline}
+main{flex:1;width:100%;max-width:820px;margin:0 auto;padding:8px 16px 40px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:18px 0 6px}
+h2{font-size:20px;margin:28px 0 8px}
+p,li{color:#cfd5f2}
+.upd{color:var(--muted);font-size:14px;margin:0 0 18px}
+.panel{background:var(--panel);border-radius:var(--r);padding:14px 18px;margin:16px 0;border:1px solid rgba(61,220,151,.35)}
+.panel p{margin:0}
+a{color:#b9a8ff}
+ul{padding-inline-start:22px}
+footer{max-width:820px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var(--muted);font-size:13px;text-align:center}
+footer a{color:var(--muted);margin:0 8px}
+.cta{display:inline-block;margin:10px 0;padding:13px 20px;border-radius:12px;color:#fff;text-decoration:none;font-weight:700;background:linear-gradient(90deg,var(--a1),var(--a2))}
+code{background:#1b2340;padding:1px 6px;border-radius:6px}
+ol,ul{color:#cfd5f2}
+.cards{display:grid;gap:12px;margin:16px 0}
+.card{display:block;background:var(--panel);border-radius:var(--r);padding:14px 18px;text-decoration:none;border:1px solid #2c3770}
+.card strong{display:block;color:var(--text);font-size:18px}
+.card span{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body data-guide="telegram-chat-stats">
+<header class="top">
+  <a class="brand" href="/fr/">TG Wrapped</a>
+  <a class="back" href="/fr/">&larr; Retour à l’outil</a>
+</header>
+<main>
+<h1>Qui parle le plus dans votre discussion Telegram ?</h1>
+<p>Un export Telegram contient chaque message avec son auteur et son heure, ce qui suffit pour répondre à des questions que l’application n’affiche pas. TG Wrapped transforme ce fichier en cartes.</p>
+<h2>Ce que vous pouvez découvrir</h2>
+<ul>
+<li><strong>Qui parle le plus :</strong> le nombre de messages de chacun et sa part de la discussion.</li>
+<li><strong>Qui lance la conversation :</strong> combien de fois chacun a écrit en premier après une période de calme.</li>
+<li><strong>Temps de réponse habituel :</strong> le délai habituel avant de répondre, affiché lorsqu’il y a assez de réponses pour que le chiffre ait un sens.</li>
+<li><strong>Plus long silence et plus longue série :</strong> le plus grand écart entre deux messages et le plus grand nombre de jours d’affilée où vous avez écrit.</li>
+<li><strong>Heure et jour de la semaine les plus actifs</strong>, et le nombre de messages envoyés la nuit.</li>
+<li><strong>Mots et émojis les plus utilisés</strong>, ainsi que le nombre de messages vocaux, stickers, photos et autres médias.</li>
+</ul>
+<h2>Comment obtenir vos statistiques</h2>
+<ol>
+<li><a href="/fr/guides/export-telegram-chat-json/">Exportez la discussion en JSON</a>.</li>
+<li>Ouvrez TG Wrapped et déposez <code>result.json</code> sur la page.</li>
+<li>Choisissez la discussion et l’année.</li>
+<li>Générez les cartes et téléchargez-les.</li>
+</ol>
+<h2>Lire les résultats</h2>
+<p>Les petites discussions donnent des chiffres instables : un temps de réponse calculé sur quelques messages en dit peu. Les chiffres reflètent aussi uniquement ce que contient l’export ; une discussion en partie supprimée, ou exportée sur une période limitée, paraîtra plus courte.</p>
+<h2>Partager</h2>
+<p>Les cartes peuvent contenir des noms. Activez l’option de masquage des noms avant de partager une discussion de groupe et pensez aux autres personnes concernées.</p>
+<p><a id="cta" class="cta" href="/fr/">Créez votre Telegram Wrapped</a></p>
+<p>À lire aussi : <a href="/fr/guides/export-telegram-chat-json/">Comment exporter une discussion Telegram en JSON</a></p>
+</main>
+<footer>
+  <nav><a href="/fr/about/">À propos</a> · <a href="/fr/privacy/">Politique de confidentialité</a> · <a href="/fr/terms/">Conditions d’utilisation</a> · <a href="/fr/guides/">Guides</a></nav>
+  <p>Ce site n’est pas affilié à Telegram. Vos données restent sur votre appareil.</p>
+</footer>
+<script>
+(function(){var ID='G-N6T6E3DRT6';window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',ID,{anonymize_ip:true});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(ID);document.head.appendChild(s);var c=document.getElementById('cta');if(c)c.addEventListener('click',function(){gtag('event','guide_cta_click',{guide:document.body.getAttribute('data-guide')||'hub'})});})();
+</script>
+</body>
+</html>

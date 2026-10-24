@@ -181,4 +181,139 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/terms/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/terms/"/>
   </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/ar/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/es/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/fr/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/pt/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/guides/export-telegram-chat-json/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/ar/guides/export-telegram-chat-json/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/es/guides/export-telegram-chat-json/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/fr/guides/export-telegram-chat-json/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/guides/telegram-chat-stats/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/ar/guides/telegram-chat-stats/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/es/guides/telegram-chat-stats/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+  </url>
+  <url>
+    <loc>https://tgwrapped.devs.surf/pt/guides/telegram-chat-stats/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/telegram-chat-stats/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/"/>
+  </url>
 </urlset>

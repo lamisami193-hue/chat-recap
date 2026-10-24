@@ -17,7 +17,7 @@ Each language page has a localized title and description, a canonical URL, alter
 ## Privacy
 
 - The Telegram export is parsed and analyzed locally in the browser.
-- The app does not upload chat content. Google Analytics 4 (measurement ID `G-N6T6E3DRT6`) measures visits and a few content-free events (`file_loaded`, `cards_generated`, `card_download`, `card_share`, `download_all`, `sample_used`); it never receives chat content.
+- The app does not upload chat content. Google Analytics 4 (measurement ID `G-N6T6E3DRT6`) measures visits and a few content-free events (`file_loaded`, `cards_generated`, `card_download`, `card_share`, `download_all`, `sample_used`, `guide_cta_click`); it never receives chat content.
 - The analysis engine clears the parsed export data after generating results. The worker itself remains active until the user starts over, when it is terminated and its object URL is revoked.
 - For extra privacy, export Telegram data as **Machine-readable JSON** without photos, videos, or other media.
 
@@ -35,3 +35,7 @@ The site is served directly from the repository root by Cloudflare Pages; no bui
 Run the regression tests with `npm test` using Node.js 18 or newer.
 
 The project is not affiliated with Telegram.
+
+## Guides
+
+Two short guides per language (`/guides/export-telegram-chat-json/` and `/guides/telegram-chat-stats/`, plus a `/guides/` index) help visitors export their Telegram data and understand the stats. They are listed in `sitemap.xml` with hreflang alternates and linked from every page footer.

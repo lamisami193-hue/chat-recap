@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://www.googletagmanager.com; style-src 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<title>Como exportar uma conversa do Telegram em JSON | TG Wrapped</title>
+<meta name="description" content="Passo a passo: exporte uma conversa do Telegram ou toda a sua conta em JSON legível por máquina a partir do Telegram Desktop, pronto para um resumo Telegram Wrapped.">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="canonical" href="https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/">
+<link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/">
+<link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/export-telegram-chat-json/">
+<link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/export-telegram-chat-json/">
+<link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/export-telegram-chat-json/">
+<link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/">
+<link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/export-telegram-chat-json/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://tgwrapped.devs.surf/pt/guides/export-telegram-chat-json/">
+<meta property="og:title" content="Como exportar uma conversa do Telegram em JSON">
+<meta property="og:description" content="Passo a passo: exporte uma conversa do Telegram ou toda a sua conta em JSON legível por máquina a partir do Telegram Desktop, pronto para um resumo Telegram Wrapped.">
+<meta property="og:site_name" content="TG Wrapped">
+<style>
+:root{--bg:#0b0f1a;--panel:#141a2b;--text:#eef1ff;--muted:#9aa3c7;--a1:#7c5cff;--a2:#ff5c8a;--r:16px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic","Noto Sans",Arial,sans-serif;line-height:1.65}
+body{min-height:100vh;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;max-width:820px;width:100%;margin:0 auto}
+.brand{font-weight:800;letter-spacing:.3px;font-size:20px;text-decoration:none;background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.back{color:var(--muted);font-size:14px;text-decoration:none}
+.back:hover,.back:focus-visible{color:var(--text);text-decoration:underline}
+main{flex:1;width:100%;max-width:820px;margin:0 auto;padding:8px 16px 40px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:18px 0 6px}
+h2{font-size:20px;margin:28px 0 8px}
+p,li{color:#cfd5f2}
+.upd{color:var(--muted);font-size:14px;margin:0 0 18px}
+.panel{background:var(--panel);border-radius:var(--r);padding:14px 18px;margin:16px 0;border:1px solid rgba(61,220,151,.35)}
+.panel p{margin:0}
+a{color:#b9a8ff}
+ul{padding-inline-start:22px}
+footer{max-width:820px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var(--muted);font-size:13px;text-align:center}
+footer a{color:var(--muted);margin:0 8px}
+.cta{display:inline-block;margin:10px 0;padding:13px 20px;border-radius:12px;color:#fff;text-decoration:none;font-weight:700;background:linear-gradient(90deg,var(--a1),var(--a2))}
+code{background:#1b2340;padding:1px 6px;border-radius:6px}
+ol,ul{color:#cfd5f2}
+.cards{display:grid;gap:12px;margin:16px 0}
+.card{display:block;background:var(--panel);border-radius:var(--r);padding:14px 18px;text-decoration:none;border:1px solid #2c3770}
+.card strong{display:block;color:var(--text);font-size:18px}
+.card span{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body data-guide="export-telegram-chat-json">
+<header class="top">
+  <a class="brand" href="/pt/">TG Wrapped</a>
+  <a class="back" href="/pt/">&larr; Voltar à ferramenta</a>
+</header>
+<main>
+<h1>Como exportar uma conversa do Telegram em JSON</h1>
+<p>Para criar um resumo do Telegram precisa de um único ficheiro: <code>result.json</code>, exportado do Telegram Desktop. As aplicações móveis não conseguem exportar conversas, por isso precisa da aplicação de computador para Windows, macOS ou Linux. Demora cerca de dois minutos.</p>
+<h2>Exporte os seus dados</h2>
+<ol>
+<li>Abra o Telegram Desktop e vá a <strong>Definições → Avançadas → Exportar dados do Telegram</strong> (Settings → Advanced → Export Telegram data).</li>
+<li>Escolha o que incluir. Para um resumo bastam as <strong>conversas pessoais</strong> (e os grupos que quiser). Desmarque fotografias, vídeos, mensagens de voz, autocolantes e ficheiros: a exportação fica pequena e rápida.</li>
+<li>Defina o formato como <strong>JSON legível por máquina</strong> (Machine-readable JSON). Uma exportação em HTML não funciona.</li>
+<li>Se quiser, limite o período, por exemplo só este ano.</li>
+<li>Carregue em <strong>Exportar</strong> e aguarde. O Telegram pode pedir-lhe que confirme o pedido a partir de outro dispositivo com sessão iniciada.</li>
+<li>Abra a pasta de exportação e procure <code>result.json</code>.</li>
+</ol>
+<h2>Exportar só uma conversa</h2>
+<p>Abra a conversa, carregue no menu (⋮) no canto superior direito e escolha <strong>Exportar histórico da conversa</strong> (Export chat history). Use as mesmas opções: sem multimédia e <strong>JSON legível por máquina</strong>. Os nomes dos menus podem variar ligeiramente entre versões do Telegram Desktop.</p>
+<h2>Crie o seu resumo</h2>
+<p>Abra o TG Wrapped, largue o ficheiro <code>result.json</code> na página, escolha as conversas e o ano e carregue em gerar. O ficheiro é analisado no seu navegador e não é enviado.</p>
+<h2>Dicas</h2>
+<ul>
+<li>Deixe a multimédia de fora: fotografias e vídeos tornam o ficheiro enorme e não são usados.</li>
+<li>Exportações muito grandes podem demorar um pouco a analisar; mantenha o separador aberto.</li>
+<li>Se o site disser que o ficheiro não é uma exportação do Telegram, confirme que escolheu JSON e não HTML, e que selecionou <code>result.json</code>.</li>
+</ul>
+<p><a id="cta" class="cta" href="/pt/">Crie o seu Telegram Wrapped</a></p>
+<p>Leia também: <a href="/pt/guides/telegram-chat-stats/">Estatísticas de conversas do Telegram: quem fala mais?</a></p>
+</main>
+<footer>
+  <nav><a href="/pt/about/">Sobre</a> · <a href="/pt/privacy/">Política de privacidade</a> · <a href="/pt/terms/">Termos de uso</a> · <a href="/pt/guides/">Guias</a></nav>
+  <p>Este site não é afiliado ao Telegram. Os seus dados ficam no dispositivo.</p>
+</footer>
+<script>
+(function(){var ID='G-N6T6E3DRT6';window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',ID,{anonymize_ip:true});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(ID);document.head.appendChild(s);var c=document.getElementById('cta');if(c)c.addEventListener('click',function(){gtag('event','guide_cta_click',{guide:document.body.getAttribute('data-guide')||'hub'})});})();
+</script>
+</body>
+</html>
