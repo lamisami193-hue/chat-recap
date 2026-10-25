@@ -200,7 +200,7 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
 var GAP_MS = 6 * 3600 * 1000;
 var URL_RE = /https?:\/\/\S+|www\.\S+|t\.me\/\S+/gi;
 var WORD_RE = /[\p{L}\p{M}\p{N}'\u2019]+/gu;
-var EMOJI_RE = /\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic}|[\u{1F3FB}-\u{1F3FF}])*/gu;
+var EMOJI_RE = /\p{Regional_Indicator}{2}|[0-9#*]\uFE0F?\u20E3|[\u00A9\u00AE\u2122]\uFE0F|(?![\u00A9\u00AE\u2122])\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic}|[\u{1F3FB}-\u{1F3FF}]|[\u{E0020}-\u{E007F}])*/gu;
 var STOP = new Set((
   'the and for you that this with have are was but not your from they what all can just like get got out has had him her his she our their there will would about when then them than been were who how why its too any one now did does doing very more some into over also here yes yeah okay ' +
   'le la les de des du un une et en que qui pas pour dans sur est au aux avec ce cet cette ça je tu il elle nous vous ils elles mais ou donc ne se sa son ses mon ma mes ton ta tes comme plus par tout oui non ' +
@@ -818,6 +818,31 @@ var RTL = false, XS = PAD, XE = W - PAD, AS = 'start', AE = 'end';
 
 function setDir() { RTL = lang === 'ar'; XS = RTL ? W - PAD : PAD; XE = RTL ? PAD : W - PAD; }
 
+var FLAGS_OK = null;
+/* Windows has no flag emoji font: detect it once, and show the two-letter country code instead of an empty box. */
+function flagsSupported() {
+  if (FLAGS_OK !== null) return FLAGS_OK;
+  FLAGS_OK = true;
+  try {
+    var c = document.createElement('canvas'); c.width = 64; c.height = 64;
+    var g = c.getContext('2d', { willReadFrequently: true });
+    g.font = '48px ' + EMOJI_FONT; g.textBaseline = 'alphabetic';
+    g.fillText('\uD83C\uDDF2\uD83C\uDDE6', 0, 48);
+    var d = g.getImageData(0, 0, 64, 64).data, seen = false;
+    for (var i = 0; i < d.length; i += 4) {
+      if (d[i + 3] > 0) {
+        seen = true;
+        if (Math.max(d[i], d[i + 1], d[i + 2]) - Math.min(d[i], d[i + 1], d[i + 2]) > 60) { FLAGS_OK = true; return true; }
+      }
+    }
+    FLAGS_OK = !seen;
+  } catch (e) { FLAGS_OK = true; }
+  return FLAGS_OK;
+}
+function flagLetters(s) {
+  return Array.from(s).map(function (ch) { return String.fromCharCode(ch.codePointAt(0) - 0x1F1E6 + 65); }).join('');
+}
+
 function text(ctx, s, x, y, o) {
   o = o || {};
   var size = o.size || 48, weight = o.weight || 600;
@@ -1002,7 +1027,8 @@ function buildSpecs(R, hide) {
         var ems = R.emojis.slice(0, 5), slot = BW / 5;
         ems.forEach(function (e, i) {
           var cx = PAD + slot * i + slot / 2;
-          text(ctx, e[0], cx, y + 190, { size: 110, emoji: true });
+          if (/^\p{Regional_Indicator}{2}$/u.test(e[0]) && !flagsSupported()) text(ctx, flagLetters(e[0]), cx, y + 175, { size: 72, weight: 800 });
+          else text(ctx, e[0], cx, y + 190, { size: 110, emoji: true });
           text(ctx, nfmt(e[1]), cx, y + 262, { size: 36, alpha: 0.85 });
         });
       }
@@ -1208,6 +1234,7 @@ document.addEventListener('click', function (event) {
 $('langSel').addEventListener('change', function () {
   var next = $('langSel').value;
   try { localStorage.setItem('lang', next); } catch (e) {}
+  if ($('s-start').hidden) { lang = next; applyLang(); return; }  // a file is loaded: switch in place, keep the work
   if (['ar','es','fr','pt'].indexOf(next) !== -1 && (!isLocalizedPath || pathLang !== next)) { window.location.href = '/' + next + '/'; return; }
   if (isLocalizedPath && next === 'en') { window.location.href = '/'; return; }
   lang = next;

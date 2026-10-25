@@ -99,3 +99,23 @@ test('measures silence between messages in one chat', () => {
 test('rejects JSON that is not a supported Telegram export shape', () => {
   assert.throws(() => chatList({ unexpected: true }), { message: 'FORMAT' });
 });
+
+test('counts flags and keycaps as emoji, ignores plain (c) (R) (TM) symbols', () => {
+  const text = '\u{1F1F2}\u{1F1E6} \u{1F1F2}\u{1F1E6} 1️⃣ © ® ™ ©️ \u{1F44D}\u{1F3FD}';
+  const data = { chats: { list: [{ name: 'Emoji', messages: [message(1, '2026-01-01T10:00:00', 'Alex', { text })] }] } };
+  const counts = Object.fromEntries(analyze(data.chats.list, [0], 2026).emojis.map((e) => [e[0], e[1]]));
+
+  assert.equal(counts['\u{1F1F2}\u{1F1E6}'], 2);
+  assert.equal(counts['1️⃣'], 1);
+  assert.equal(counts['©️'], 1);
+  assert.equal(counts['©'], undefined);
+  assert.equal(counts['®'], undefined);
+  assert.equal(counts['™'], undefined);
+  assert.equal(counts['\u{1F44D}\u{1F3FD}'], 1);
+});
+
+test('the statistics engine is identical on all five tool pages', () => {
+  const grab = (f) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8')
+    .match(/<script id="stats-src" type="text\/plain">([\s\S]*?)<\/script>/)[1];
+  for (const f of ['ar', 'es', 'fr', 'pt']) assert.equal(grab(f + '/index.html'), match[1], f);
+});
