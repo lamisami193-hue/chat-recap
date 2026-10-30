@@ -1,0 +1,10 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile
+nginx.conf
+README.md
+package.json
+package-lock.json
+tests
+node_modules

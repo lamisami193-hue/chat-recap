@@ -119,3 +119,32 @@ test('the statistics engine is identical on all five tool pages', () => {
     .match(/<script id="stats-src" type="text\/plain">([\s\S]*?)<\/script>/)[1];
   for (const f of ['ar', 'es', 'fr', 'pt']) assert.equal(grab(f + '/index.html'), match[1], f);
 });
+
+test('forwarded text is not counted as the forwarder\'s words or emoji, but the message still counts', () => {
+  const msgs = [
+    message(1, '2026-01-01T10:00:00', 'Alex', { text: 'banana banana banana \u{1F602}' }),
+    message(2, '2026-01-01T10:01:00', 'Alex', { text: 'apple apple apple \u{1F44D}', forwarded_from: 'News channel' })
+  ];
+  const result = analyze([{ name: 'Fwd', messages: msgs }], [0], 2026);
+  const words = result.words.map((w) => w[0]);
+
+  assert.equal(result.total, 2);
+  assert.ok(words.includes('banana'));
+  assert.ok(!words.includes('apple'));
+  assert.equal(JSON.stringify(result.emojis.map((e) => e[0])), JSON.stringify(['\u{1F602}']));
+  assert.equal(result.people[0].textMsgs, 1);
+});
+
+test('two different accounts with the same display name stay separate and get distinct names', () => {
+  const msgs = [
+    message(1, '2026-01-01T10:00:00', 'Sam', { from_id: 'user1' }),
+    message(2, '2026-01-01T10:01:00', 'Sam', { from_id: 'user2' }),
+    message(3, '2026-01-01T10:02:00', 'Sam', { from_id: 'user2' })
+  ];
+  const result = analyze([{ name: 'Same', messages: msgs }], [0], 2026);
+  const names = result.people.map((p) => p.name);
+
+  assert.equal(result.people.length, 2);
+  assert.equal(new Set(names).size, 2);
+  assert.equal(names.join('|'), 'Sam|Sam (2)');
+});

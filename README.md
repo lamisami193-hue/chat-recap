@@ -39,3 +39,14 @@ The project is not affiliated with Telegram.
 ## Guides
 
 Two short guides per language (`/guides/export-telegram-chat-json/` and `/guides/telegram-chat-stats/`, plus a `/guides/` index) help visitors export their Telegram data and understand the stats. They are listed in `sitemap.xml` with hreflang alternates and linked from every page footer.
+
+## 404 page and Docker
+
+- `404.html` is served by Cloudflare Pages for unknown URLs (real 404 status, `noindex`). It is not in the sitemap.
+- `Dockerfile` and `nginx.conf` are optional (Cloudflare does not use them). They serve the same files and the same 404 behaviour; `.dockerignore` keeps tests and config out of the image.
+
+## Statistics rules
+
+- Forwarded messages count as messages, but their text is not counted in words, emoji or message length.
+- Different accounts with the same display name stay separate and are shown as "Name" and "Name (2)".
+- Long names are shrunk and then cut with an ellipsis on the cards.

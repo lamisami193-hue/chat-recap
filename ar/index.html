@@ -356,7 +356,8 @@ function analyze(chats, ids, year) {
       if (m2.photo) media.photo++;
 
       var tx = textOf(m2.text);
-      if (tx) { p.textMsgs++; p.chars += tx.length; countText(tx, words, emojis); }
+      // Forwarded messages still count as messages, but their text was written by someone else.
+      if (tx && m2.forwarded_from == null) { p.textMsgs++; p.chars += tx.length; countText(tx, words, emojis); }
 
       if (!prev || it.ts - prev.ts > GAP_MS) p.starts++;
       else if (prev.key !== key) p.resp.push(it.ts - prev.ts);
@@ -388,6 +389,11 @@ function analyze(chats, ids, year) {
 
   var list = Array.from(people.values()).sort(function (a, b) { return b.count - a.count; });
   var peopleCount = list.length;
+  var seenNames = new Map();
+  list.forEach(function (p) {
+    var n = (seenNames.get(p.name) || 0) + 1; seenNames.set(p.name, n);
+    if (n > 1) p.name = p.name + ' (' + n + ')';
+  });
   var out = list.slice(0, 8).map(function (p) {
     return {
       name: p.name, count: p.count, share: p.count / total, textMsgs: p.textMsgs,
@@ -853,7 +859,13 @@ function text(ctx, s, x, y, o) {
   var fam = o.emoji ? EMOJI_FONT : FONT;
   ctx.font = weight + ' ' + size + 'px ' + fam;
   if (o.maxW) {
-    while (size > 18 && ctx.measureText(s).width > o.maxW) { size -= 2; ctx.font = weight + ' ' + size + 'px ' + fam; }
+    var floor = Math.max(24, Math.round(size * 0.55));
+    while (size > floor && ctx.measureText(s).width > o.maxW) { size -= 2; ctx.font = weight + ' ' + size + 'px ' + fam; }
+    if (ctx.measureText(s).width > o.maxW) {
+      var chars = Array.from(s), lo = 0, hi = chars.length;
+      while (lo < hi) { var mid = (lo + hi + 1) >> 1; if (ctx.measureText(chars.slice(0, mid).join('').trim() + '\u2026').width <= o.maxW) lo = mid; else hi = mid - 1; }
+      s = chars.slice(0, lo).join('').trim() + '\u2026';
+    }
   }
   ctx.fillStyle = o.color || '#fff';
   ctx.globalAlpha = o.alpha == null ? 1 : o.alpha;
