@@ -54,5 +54,5 @@ Two short guides per language (`/guides/export-telegram-chat-json/` and `/guides
 ## Ads (Adsterra)
 
 - Banner code lives only in `ads/*.html` and is loaded in an iframe. There is no consent notice (owner decision); ads always show on those slots.
-- Slots (class `ad-slot`): guides, guides index and About only. The frame is not sandboxed from the site (Adsterra needs that), so ads are NEVER placed on the tool pages (start, picker, results) where a chat file is chosen. Not on privacy, terms or 404.
+- Slots (class `ad-slot`): guides, guides index, About, and the tool's chat picker and results (not the start screen, where the file is chosen). Frames are not sandboxed from the site (Adsterra needs that), so ad code could technically see names/stats on those screens; the privacy policy says so. Not on privacy, terms or 404.
 - Native Banner (unit 32041448) is not used.
