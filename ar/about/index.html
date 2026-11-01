@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="index,follow">
 <title>حول الموقع | TG Wrapped</title>
@@ -67,10 +67,41 @@ footer a{color:var(--muted);margin:0 8px}
 <p>الأداة متاحة بالإنجليزية والعربية والإسبانية والفرنسية والبرتغالية.</p>
 <h2>معلومات إضافية</h2>
 <p>يرجى قراءة <a href="/ar/privacy/">سياسة الخصوصية</a> و<a href="/ar/terms/">شروط الاستخدام</a>.</p>
+<div class="ad-slot" hidden data-mobile="300x250" style="margin:28px auto;text-align:center"></div>
 </main>
 <footer>
   <nav><a href="/ar/about/">حول الموقع</a> · <a href="/ar/privacy/">سياسة الخصوصية</a> · <a href="/ar/terms/">شروط الاستخدام</a> · <a href="/ar/guides/">الأدلة</a></nav>
   <p>الموقع غير تابع لتيليجرام. بياناتك تبقى على جهازك.</p>
 </footer>
+<script>
+/* Ads run in sandboxed frames without access to this page. A slot loads only while it is visible. */
+(function () {
+  var slots = Array.prototype.slice.call(document.querySelectorAll('.ad-slot')); if (!slots.length) return;
+  var L = (document.documentElement.lang || 'en').slice(0, 2);
+  var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade' };
+  var label = A[L] || A.en;
+  function visible(slot) { return !slot.closest('section[hidden]'); }
+  function clear(slot) { slot.textContent = ''; slot.hidden = true; }
+  function show(slot) {
+    if (slot.firstChild) return;
+    var wide = window.innerWidth >= 768, size = wide ? '728x90' : (slot.getAttribute('data-mobile') || '300x250');
+    var wh = size.split('x');
+    var lab = document.createElement('div'); lab.textContent = label;
+    lab.style.cssText = 'font-size:11px;color:#9aa3c7;text-align:center;margin-bottom:4px';
+    var f = document.createElement('iframe');
+    f.src = '/ads/' + size + '.html'; f.width = wh[0]; f.height = wh[1]; f.title = label; f.loading = 'lazy';
+    f.setAttribute('sandbox', 'allow-scripts allow-popups allow-popups-to-escape-sandbox');
+    f.setAttribute('referrerpolicy', 'origin');
+    f.style.cssText = 'border:0;max-width:100%;display:block;margin:0 auto';
+    slot.appendChild(lab); slot.appendChild(f); slot.hidden = false;
+  }
+  function sync() { slots.forEach(function (s) { if (visible(s)) show(s); else clear(s); }); }
+  sync();
+  if (window.MutationObserver) {
+    var o = new MutationObserver(sync);
+    Array.prototype.forEach.call(document.querySelectorAll('main section[id^="s-"]'), function (sec) { o.observe(sec, { attributes: true, attributeFilter: ['hidden'] }); });
+  }
+})();
+</script>
 </body>
 </html>

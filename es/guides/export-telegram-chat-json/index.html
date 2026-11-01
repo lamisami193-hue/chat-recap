@@ -70,6 +70,7 @@ ol,ul{color:#cfd5f2}
 <main>
 <h1>Cómo exportar un chat de Telegram en JSON</h1>
 <p>Para crear un resumen de Telegram necesitas un solo archivo: <code>result.json</code>, exportado desde Telegram Desktop. Las aplicaciones móviles no pueden exportar chats, así que necesitas la aplicación de escritorio para Windows, macOS o Linux. Se tarda unos dos minutos.</p>
+<div class="ad-slot" hidden data-mobile="300x250" style="margin:18px auto;text-align:center"></div>
 <h2>Exporta tus datos</h2>
 <ol>
 <li>Abre Telegram Desktop y ve a <strong>Ajustes → Avanzado → Exportar datos de Telegram</strong> (Settings → Advanced → Export Telegram data).</li>
@@ -91,7 +92,7 @@ ol,ul{color:#cfd5f2}
 </ul>
 <p><a id="cta" class="cta" href="/es/">Crea tu Telegram Wrapped</a></p>
 <p>Lee también: <a href="/es/guides/telegram-chat-stats/">Estadísticas de chat de Telegram: ¿quién habla más?</a></p>
-<div id="ad-slot" hidden data-mobile="300x250" style="margin:28px auto 8px;text-align:center"></div>
+<div class="ad-slot" hidden data-mobile="300x250" style="margin:28px auto 8px;text-align:center"></div>
 </main>
 <footer>
   <nav><a href="/es/about/">Acerca de</a> · <a href="/es/privacy/">Política de privacidad</a> · <a href="/es/terms/">Términos de uso</a> · <a href="/es/guides/">Guías</a></nav>
@@ -101,14 +102,15 @@ ol,ul{color:#cfd5f2}
 (function(){var ID='G-N6T6E3DRT6';window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',ID,{anonymize_ip:true});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(ID);document.head.appendChild(s);var c=document.getElementById('cta');if(c)c.addEventListener('click',function(){gtag('event','guide_cta_click',{guide:document.body.getAttribute('data-guide')||'hub'})});})();
 </script>
 <script>
-/* Ads run in a sandboxed frame without access to this page; on the tool page the ad is removed as soon as a file is chosen. */
+/* Ads run in sandboxed frames without access to this page. A slot loads only while it is visible. */
 (function () {
-  var slot = document.getElementById('ad-slot'); if (!slot) return;
+  var slots = Array.prototype.slice.call(document.querySelectorAll('.ad-slot')); if (!slots.length) return;
   var L = (document.documentElement.lang || 'en').slice(0, 2);
   var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade' };
   var label = A[L] || A.en;
-  function clear() { slot.textContent = ''; slot.hidden = true; }
-  function show() {
+  function visible(slot) { return !slot.closest('section[hidden]'); }
+  function clear(slot) { slot.textContent = ''; slot.hidden = true; }
+  function show(slot) {
     if (slot.firstChild) return;
     var wide = window.innerWidth >= 768, size = wide ? '728x90' : (slot.getAttribute('data-mobile') || '300x250');
     var wh = size.split('x');
@@ -121,10 +123,12 @@ ol,ul{color:#cfd5f2}
     f.style.cssText = 'border:0;max-width:100%;display:block;margin:0 auto';
     slot.appendChild(lab); slot.appendChild(f); slot.hidden = false;
   }
-  var start = document.getElementById('s-start');
-  function sync() { if (start && start.hidden) clear(); else show(); }
+  function sync() { slots.forEach(function (s) { if (visible(s)) show(s); else clear(s); }); }
   sync();
-  if (start && window.MutationObserver) new MutationObserver(sync).observe(start, { attributes: true, attributeFilter: ['hidden'] });
+  if (window.MutationObserver) {
+    var o = new MutationObserver(sync);
+    Array.prototype.forEach.call(document.querySelectorAll('main section[id^="s-"]'), function (sec) { o.observe(sec, { attributes: true, attributeFilter: ['hidden'] }); });
+  }
 })();
 </script>
 </body>

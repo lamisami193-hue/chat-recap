@@ -70,6 +70,7 @@ ol,ul{color:#cfd5f2}
 <main>
 <h1>Who Talks the Most in Your Telegram Chat?</h1>
 <p>A Telegram export contains every message with its sender and time, which is enough to answer questions the app itself never shows. TG Wrapped turns that file into story cards.</p>
+<div class="ad-slot" hidden data-mobile="300x250" style="margin:18px auto;text-align:center"></div>
 <h2>What you can find out</h2>
 <ul>
 <li><strong>Who talks the most:</strong> messages per person and each person's share of the chat.</li>
@@ -92,7 +93,7 @@ ol,ul{color:#cfd5f2}
 <p>Cards can include names. Turn on the hide-names option before sharing a group chat, and think about the other people in it.</p>
 <p><a id="cta" class="cta" href="/">Make your Telegram Wrapped</a></p>
 <p>Read next: <a href="/guides/export-telegram-chat-json/">How to Export a Telegram Chat as JSON</a></p>
-<div id="ad-slot" hidden data-mobile="300x250" style="margin:28px auto 8px;text-align:center"></div>
+<div class="ad-slot" hidden data-mobile="300x250" style="margin:28px auto 8px;text-align:center"></div>
 </main>
 <footer>
   <nav><a href="/about/">About</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Use</a> · <a href="/guides/">Guides</a></nav>
@@ -102,14 +103,15 @@ ol,ul{color:#cfd5f2}
 (function(){var ID='G-N6T6E3DRT6';window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',ID,{anonymize_ip:true});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(ID);document.head.appendChild(s);var c=document.getElementById('cta');if(c)c.addEventListener('click',function(){gtag('event','guide_cta_click',{guide:document.body.getAttribute('data-guide')||'hub'})});})();
 </script>
 <script>
-/* Ads run in a sandboxed frame without access to this page; on the tool page the ad is removed as soon as a file is chosen. */
+/* Ads run in sandboxed frames without access to this page. A slot loads only while it is visible. */
 (function () {
-  var slot = document.getElementById('ad-slot'); if (!slot) return;
+  var slots = Array.prototype.slice.call(document.querySelectorAll('.ad-slot')); if (!slots.length) return;
   var L = (document.documentElement.lang || 'en').slice(0, 2);
   var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade' };
   var label = A[L] || A.en;
-  function clear() { slot.textContent = ''; slot.hidden = true; }
-  function show() {
+  function visible(slot) { return !slot.closest('section[hidden]'); }
+  function clear(slot) { slot.textContent = ''; slot.hidden = true; }
+  function show(slot) {
     if (slot.firstChild) return;
     var wide = window.innerWidth >= 768, size = wide ? '728x90' : (slot.getAttribute('data-mobile') || '300x250');
     var wh = size.split('x');
@@ -122,10 +124,12 @@ ol,ul{color:#cfd5f2}
     f.style.cssText = 'border:0;max-width:100%;display:block;margin:0 auto';
     slot.appendChild(lab); slot.appendChild(f); slot.hidden = false;
   }
-  var start = document.getElementById('s-start');
-  function sync() { if (start && start.hidden) clear(); else show(); }
+  function sync() { slots.forEach(function (s) { if (visible(s)) show(s); else clear(s); }); }
   sync();
-  if (start && window.MutationObserver) new MutationObserver(sync).observe(start, { attributes: true, attributeFilter: ['hidden'] });
+  if (window.MutationObserver) {
+    var o = new MutationObserver(sync);
+    Array.prototype.forEach.call(document.querySelectorAll('main section[id^="s-"]'), function (sec) { o.observe(sec, { attributes: true, attributeFilter: ['hidden'] }); });
+  }
 })();
 </script>
 </body>

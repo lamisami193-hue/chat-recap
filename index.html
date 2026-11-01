@@ -146,7 +146,7 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
         <li data-i18n="how4"></li>
       </ol>
     </details>
-    <div id="ad-slot" hidden data-mobile="320x50" style="margin:22px auto 0;text-align:center"></div>
+    <div class="ad-slot" hidden data-mobile="320x50" style="margin:22px auto 0;text-align:center"></div>
 
   </section>
 
@@ -179,6 +179,7 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
       <button id="go" type="button" data-i18n="generate"></button>
       <button id="back1" class="ghost" type="button" data-i18n="again"></button>
     </div>
+    <div class="ad-slot" hidden data-mobile="320x50" style="margin:22px auto;text-align:center"></div>
   </section>
 
   <section id="s-result" hidden>
@@ -187,7 +188,9 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
       <button id="dlAll" type="button" data-i18n="download_all"></button>
       <button id="back2" class="ghost" type="button" data-i18n="again"></button>
     </div>
+    <div class="ad-slot" hidden data-mobile="320x50" style="margin:14px auto;text-align:center"></div>
     <div class="grid" id="grid"></div>
+    <div class="ad-slot" hidden data-mobile="300x250" style="margin:18px auto;text-align:center"></div>
   </section>
 </main>
 
@@ -1264,14 +1267,15 @@ applyLang();
 })();
 </script>
 <script>
-/* Ads run in a sandboxed frame without access to this page; on the tool page the ad is removed as soon as a file is chosen. */
+/* Ads run in sandboxed frames without access to this page. A slot loads only while it is visible. */
 (function () {
-  var slot = document.getElementById('ad-slot'); if (!slot) return;
+  var slots = Array.prototype.slice.call(document.querySelectorAll('.ad-slot')); if (!slots.length) return;
   var L = (document.documentElement.lang || 'en').slice(0, 2);
   var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade' };
   var label = A[L] || A.en;
-  function clear() { slot.textContent = ''; slot.hidden = true; }
-  function show() {
+  function visible(slot) { return !slot.closest('section[hidden]'); }
+  function clear(slot) { slot.textContent = ''; slot.hidden = true; }
+  function show(slot) {
     if (slot.firstChild) return;
     var wide = window.innerWidth >= 768, size = wide ? '728x90' : (slot.getAttribute('data-mobile') || '300x250');
     var wh = size.split('x');
@@ -1284,10 +1288,12 @@ applyLang();
     f.style.cssText = 'border:0;max-width:100%;display:block;margin:0 auto';
     slot.appendChild(lab); slot.appendChild(f); slot.hidden = false;
   }
-  var start = document.getElementById('s-start');
-  function sync() { if (start && start.hidden) clear(); else show(); }
+  function sync() { slots.forEach(function (s) { if (visible(s)) show(s); else clear(s); }); }
   sync();
-  if (start && window.MutationObserver) new MutationObserver(sync).observe(start, { attributes: true, attributeFilter: ['hidden'] });
+  if (window.MutationObserver) {
+    var o = new MutationObserver(sync);
+    Array.prototype.forEach.call(document.querySelectorAll('main section[id^="s-"]'), function (sec) { o.observe(sec, { attributes: true, attributeFilter: ['hidden'] }); });
+  }
 })();
 </script>
 </body>
