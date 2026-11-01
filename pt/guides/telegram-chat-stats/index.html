@@ -102,56 +102,28 @@ ol,ul{color:#cfd5f2}
 (function(){var ID='G-N6T6E3DRT6';window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',ID,{anonymize_ip:true});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(ID);document.head.appendChild(s);var c=document.getElementById('cta');if(c)c.addEventListener('click',function(){gtag('event','guide_cta_click',{guide:document.body.getAttribute('data-guide')||'hub'})});})();
 </script>
 <script>
-/* Ads: nothing loads until the visitor accepts. The ad runs in a sandboxed frame without access to this page. */
+/* Ads run in a sandboxed frame without access to this page; on the tool page the ad is removed as soon as a file is chosen. */
 (function () {
   var slot = document.getElementById('ad-slot'); if (!slot) return;
-  var KEY = 'ads_consent', L = (document.documentElement.lang || 'en').slice(0, 2);
-  var T = {
-    en: { m: 'Ads help pay for this free site. Allow ads from our partner? They may use cookies. Your chats are never shared.', y: 'Allow ads', n: 'No thanks', p: 'Privacy', a: 'Advertisement' },
-    ar: { m: 'الإعلانات تساعد على تغطية تكاليف هذا الموقع المجاني. هل تسمح بعرض إعلانات من شريكنا؟ قد تستخدم ملفات تعريف الارتباط. محادثاتك لا تُشارَك أبداً.', y: 'السماح', n: 'لا، شكراً', p: 'الخصوصية', a: 'إعلان' },
-    es: { m: 'Los anuncios ayudan a pagar este sitio gratuito. ¿Permites anuncios de nuestro socio? Pueden usar cookies. Tus chats nunca se comparten.', y: 'Permitir', n: 'No, gracias', p: 'Privacidad', a: 'Publicidad' },
-    fr: { m: 'Les publicités financent ce site gratuit. Autoriser les annonces de notre partenaire ? Elles peuvent utiliser des cookies. Vos discussions ne sont jamais partagées.', y: 'Autoriser', n: 'Non merci', p: 'Confidentialité', a: 'Publicité' },
-    pt: { m: 'Os anúncios ajudam a pagar este site gratuito. Permitir anúncios do nosso parceiro? Podem usar cookies. As suas conversas nunca são partilhadas.', y: 'Permitir', n: 'Não, obrigado', p: 'Privacidade', a: 'Publicidade' }
-  };
-  var t = T[L] || T.en, rtl = L === 'ar';
-  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
-  function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  var L = (document.documentElement.lang || 'en').slice(0, 2);
+  var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade' };
+  var label = A[L] || A.en;
   function clear() { slot.textContent = ''; slot.hidden = true; }
   function show() {
     if (slot.firstChild) return;
     var wide = window.innerWidth >= 768, size = wide ? '728x90' : (slot.getAttribute('data-mobile') || '300x250');
     var wh = size.split('x');
-    var lab = document.createElement('div'); lab.textContent = t.a;
+    var lab = document.createElement('div'); lab.textContent = label;
     lab.style.cssText = 'font-size:11px;color:#9aa3c7;text-align:center;margin-bottom:4px';
     var f = document.createElement('iframe');
-    f.src = '/ads/' + size + '.html'; f.width = wh[0]; f.height = wh[1]; f.title = t.a; f.loading = 'lazy';
+    f.src = '/ads/' + size + '.html'; f.width = wh[0]; f.height = wh[1]; f.title = label; f.loading = 'lazy';
     f.setAttribute('sandbox', 'allow-scripts allow-popups allow-popups-to-escape-sandbox');
     f.setAttribute('referrerpolicy', 'origin');
     f.style.cssText = 'border:0;max-width:100%;display:block;margin:0 auto';
     slot.appendChild(lab); slot.appendChild(f); slot.hidden = false;
   }
-  function banner() {
-    var b = document.createElement('div'); b.setAttribute('role', 'dialog'); b.setAttribute('aria-label', t.a);
-    b.dir = rtl ? 'rtl' : 'ltr';
-    b.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#141a2b;color:#eef1ff;border-top:1px solid rgba(255,255,255,.15);padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif';
-    var p = document.createElement('span'); p.textContent = t.m + ' '; p.style.maxWidth = '720px';
-    var a = document.createElement('a'); a.href = (L === 'en' ? '' : '/' + L) + '/privacy/'; a.textContent = t.p; a.style.color = '#b9a8ff'; p.appendChild(a);
-    function btn(txt, primary) {
-      var x = document.createElement('button'); x.type = 'button'; x.textContent = txt;
-      x.style.cssText = 'cursor:pointer;border-radius:999px;padding:8px 18px;font:inherit;font-weight:600;border:1px solid #7c5cff;' + (primary ? 'background:#7c5cff;color:#fff' : 'background:transparent;color:#eef1ff');
-      return x;
-    }
-    var y = btn(t.y, true), n = btn(t.n, false);
-    y.onclick = function () { set('1'); b.remove(); sync(); };
-    n.onclick = function () { set('0'); b.remove(); };
-    b.appendChild(p); b.appendChild(y); b.appendChild(n); document.body.appendChild(b);
-  }
   var start = document.getElementById('s-start');
-  function sync() {
-    if (get() !== '1') return;
-    if (start && start.hidden) clear(); else show();   // on the tool page the ad is removed as soon as a file is chosen
-  }
-  if (get() === null) banner();
+  function sync() { if (start && start.hidden) clear(); else show(); }
   sync();
   if (start && window.MutationObserver) new MutationObserver(sync).observe(start, { attributes: true, attributeFilter: ['hidden'] });
 })();

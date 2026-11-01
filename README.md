@@ -53,6 +53,6 @@ Two short guides per language (`/guides/export-telegram-chat-json/` and `/guides
 
 ## Ads (Adsterra)
 
-- Banner code lives only in `ads/*.html` and is loaded in a sandboxed iframe (no access to the host page). Nothing loads until the visitor accepts the notice (`ads_consent` in localStorage).
+- Banner code lives only in `ads/*.html` and is loaded in a sandboxed iframe (no access to the host page). There is no consent notice (owner decision); ads always show on those slots.
 - Slots: guide pages and the start screen of the tool page; the ad is removed once a file is chosen. Never on results.
 - Native Banner (unit 32041448) is not used.
