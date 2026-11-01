@@ -50,3 +50,9 @@ Two short guides per language (`/guides/export-telegram-chat-json/` and `/guides
 - Forwarded messages count as messages, but their text is not counted in words, emoji or message length.
 - Different accounts with the same display name stay separate and are shown as "Name" and "Name (2)".
 - Long names are shrunk and then cut with an ellipsis on the cards.
+
+## Ads (Adsterra)
+
+- Banner code lives only in `ads/*.html` and is loaded in a sandboxed iframe (no access to the host page). Nothing loads until the visitor accepts the notice (`ads_consent` in localStorage).
+- Slots: guide pages and the start screen of the tool page; the ad is removed once a file is chosen. Never on results.
+- Native Banner (unit 32041448) is not used.
