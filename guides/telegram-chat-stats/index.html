@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-src 'self'; script-src 'unsafe-inline' https://www.googletagmanager.com; style-src 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-src https://chat-recap.pages.dev; script-src 'unsafe-inline' https://www.googletagmanager.com; style-src 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <title>Telegram Chat Stats: Who Talks the Most? | TG Wrapped</title>
@@ -103,7 +103,7 @@ ol,ul{color:#cfd5f2}
 (function(){var ID='G-N6T6E3DRT6';window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',ID,{anonymize_ip:true});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(ID);document.head.appendChild(s);var c=document.getElementById('cta');if(c)c.addEventListener('click',function(){gtag('event','guide_cta_click',{guide:document.body.getAttribute('data-guide')||'hub'})});})();
 </script>
 <script>
-/* Ads run in sandboxed frames without access to this page. A slot loads only while it is visible. */
+/* Ads run in frames served from a different domain (chat-recap.pages.dev), so they cannot read this page. A slot loads only while it is visible. */
 (function () {
   var slots = Array.prototype.slice.call(document.querySelectorAll('.ad-slot')); if (!slots.length) return;
   var L = (document.documentElement.lang || 'en').slice(0, 2);
@@ -118,7 +118,7 @@ ol,ul{color:#cfd5f2}
     var lab = document.createElement('div'); lab.textContent = label;
     lab.style.cssText = 'font-size:11px;color:#9aa3c7;text-align:center;margin-bottom:4px';
     var f = document.createElement('iframe');
-    f.src = '/ads/' + size + '.html'; f.width = wh[0]; f.height = wh[1]; f.title = label; f.loading = 'lazy';
+    f.src = 'https://chat-recap.pages.dev/ads/' + size + '.html'; f.width = wh[0]; f.height = wh[1]; f.title = label; f.loading = 'lazy';
     f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox');
     f.setAttribute('referrerpolicy', 'origin');
     f.style.cssText = 'border:0;max-width:100%;display:block;margin:0 auto';

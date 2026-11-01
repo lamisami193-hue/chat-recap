@@ -53,6 +53,6 @@ Two short guides per language (`/guides/export-telegram-chat-json/` and `/guides
 
 ## Ads (Adsterra)
 
-- Banner code lives only in `ads/*.html` and is loaded in an iframe. There is no consent notice (owner decision); ads always show on those slots.
-- Slots (class `ad-slot`): guides, guides index, About, and the tool's start, chat picker and results. On the start screen the ad frame is removed as soon as the visitor clicks/drags/uses the keyboard on the file chooser (`locked` in the loader). Frames are not sandboxed from the site (Adsterra needs that), which is a residual privacy risk (documented in the privacy policy). Not on privacy, terms or 404.
+- Banner code lives only in `ads/*.html` and is loaded in an iframe from a different origin. There is no consent notice (owner decision); ads always show on those slots.
+- Slots (class `ad-slot`): guides, guides index, About, and every tool screen. Frames load from `https://chat-recap.pages.dev/ads/*.html` (a different origin serving the same deployment), so ad code cannot read the site. If that Pages domain changes, update the loader and the `frame-src` CSP in the 20 pages that show ads. Not on privacy, terms or 404.
 - Native Banner (unit 32041448) is not used.
