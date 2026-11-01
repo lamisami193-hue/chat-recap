@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <!-- Privacy: Google Analytics counts visits and content-free events. Telegram chat files and their contents are never sent. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-src 'self'; script-src 'unsafe-inline' 'unsafe-eval' blob: https://www.googletagmanager.com; style-src 'unsafe-inline'; img-src blob: data: 'self' https://*.google-analytics.com https://*.googletagmanager.com; worker-src blob:; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' blob: https://www.googletagmanager.com; style-src 'unsafe-inline'; img-src blob: data: 'self' https://*.google-analytics.com https://*.googletagmanager.com; worker-src blob:; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="application-name" content="TG Wrapped">
@@ -145,7 +145,6 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
         <li data-i18n="how4"></li>
       </ol>
     </details>
-    <div class="ad-slot" hidden data-mobile="320x50" style="margin:22px auto 0;text-align:center"></div>
 
   </section>
 
@@ -178,7 +177,6 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
       <button id="go" type="button" data-i18n="generate"></button>
       <button id="back1" class="ghost" type="button" data-i18n="again"></button>
     </div>
-    <div class="ad-slot" hidden data-mobile="320x50" style="margin:22px auto;text-align:center"></div>
   </section>
 
   <section id="s-result" hidden>
@@ -187,9 +185,7 @@ footer{max-width:980px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var
       <button id="dlAll" type="button" data-i18n="download_all"></button>
       <button id="back2" class="ghost" type="button" data-i18n="again"></button>
     </div>
-    <div class="ad-slot" hidden data-mobile="320x50" style="margin:14px auto;text-align:center"></div>
     <div class="grid" id="grid"></div>
-    <div class="ad-slot" hidden data-mobile="300x250" style="margin:18px auto;text-align:center"></div>
   </section>
 </main>
 
@@ -1356,36 +1352,6 @@ $('langSel').addEventListener('change', function () {
 });
 
 applyLang();
-})();
-</script>
-<script>
-/* Ads run in sandboxed frames without access to this page. A slot loads only while it is visible. */
-(function () {
-  var slots = Array.prototype.slice.call(document.querySelectorAll('.ad-slot')); if (!slots.length) return;
-  var L = (document.documentElement.lang || 'en').slice(0, 2);
-  var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade' };
-  var label = A[L] || A.en;
-  function visible(slot) { return !slot.closest('section[hidden]'); }
-  function clear(slot) { slot.textContent = ''; slot.hidden = true; }
-  function show(slot) {
-    if (slot.firstChild) return;
-    var wide = window.innerWidth >= 768, size = wide ? '728x90' : (slot.getAttribute('data-mobile') || '300x250');
-    var wh = size.split('x');
-    var lab = document.createElement('div'); lab.textContent = label;
-    lab.style.cssText = 'font-size:11px;color:#9aa3c7;text-align:center;margin-bottom:4px';
-    var f = document.createElement('iframe');
-    f.src = '/ads/' + size + '.html'; f.width = wh[0]; f.height = wh[1]; f.title = label; f.loading = 'lazy';
-    f.setAttribute('sandbox', 'allow-scripts allow-popups allow-popups-to-escape-sandbox');
-    f.setAttribute('referrerpolicy', 'origin');
-    f.style.cssText = 'border:0;max-width:100%;display:block;margin:0 auto';
-    slot.appendChild(lab); slot.appendChild(f); slot.hidden = false;
-  }
-  function sync() { slots.forEach(function (s) { if (visible(s)) show(s); else clear(s); }); }
-  sync();
-  if (window.MutationObserver) {
-    var o = new MutationObserver(sync);
-    Array.prototype.forEach.call(document.querySelectorAll('main section[id^="s-"]'), function (sec) { o.observe(sec, { attributes: true, attributeFilter: ['hidden'] }); });
-  }
 })();
 </script>
 </body>
