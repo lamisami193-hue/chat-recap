@@ -56,3 +56,7 @@ Two short guides per language (`/guides/export-telegram-chat-json/` and `/guides
 - Banner code lives only in `ads/*.html` and is loaded in an iframe from a different origin. There is no consent notice (owner decision); ads always show on those slots.
 - Slots (class `ad-slot`): guides, guides index, About, and every tool screen. Frames load from `https://chat-recap.pages.dev/ads/*.html` (a different origin serving the same deployment), so ad code cannot read the site. If that Pages domain changes, update the loader and the `frame-src` CSP in the 20 pages that show ads. Not on privacy, terms or 404.
 - Native Banner (unit 32041448) is not used.
+
+## Languages
+
+English (root), Arabic, Spanish, French, Portuguese, Russian (`/ru/`) and Hindi (`/hi/`). Each has the tool page, About, Privacy, Terms and two guides. Every page lists all languages in `hreflang` and the sitemap. The `I18N.<lang>` dictionaries are embedded in every tool page so the language can be switched in place.

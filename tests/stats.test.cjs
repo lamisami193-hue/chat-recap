@@ -117,7 +117,7 @@ test('counts flags and keycaps as emoji, ignores plain (c) (R) (TM) symbols', ()
 test('the statistics engine is identical on all five tool pages', () => {
   const grab = (f) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8')
     .match(/<script id="stats-src" type="text\/plain">([\s\S]*?)<\/script>/)[1];
-  for (const f of ['ar', 'es', 'fr', 'pt']) assert.equal(grab(f + '/index.html'), match[1], f);
+  for (const f of ['ar', 'es', 'fr', 'pt', 'ru', 'hi']) assert.equal(grab(f + '/index.html'), match[1], f);
 });
 
 test('forwarded text is not counted as the forwarder\'s words or emoji, but the message still counts', () => {

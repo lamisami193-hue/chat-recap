@@ -21,6 +21,8 @@
 <link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/about/">
 <link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/about/">
 <link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/about/">
+<link rel="alternate" hreflang="ru" href="https://tgwrapped.devs.surf/ru/about/">
+<link rel="alternate" hreflang="hi" href="https://tgwrapped.devs.surf/hi/about/">
 <link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/about/">
 <style>
 :root{--bg:#0b0f1a;--panel:#141a2b;--text:#eef1ff;--muted:#9aa3c7;--a1:#7c5cff;--a2:#ff5c8a;--r:16px}
@@ -64,7 +66,7 @@ footer a{color:var(--muted);margin:0 8px}
 <h2>من وراء الموقع</h2>
 <p>TG Wrapped مشروع مستقل من تطوير مطوّر فرد، ومجاني الاستخدام. وهو غير تابع لتيليجرام ولا مدعوم منها ولا برعايتها. «تيليجرام» علامة تجارية تعود لأصحابها، وتُذكر هنا فقط لوصف الملفات التي تستطيع الأداة قراءتها.</p>
 <h2>اللغات</h2>
-<p>الأداة متاحة بالإنجليزية والعربية والإسبانية والفرنسية والبرتغالية.</p>
+<p>الأداة متاحة بالإنجليزية والعربية والإسبانية والفرنسية والبرتغالية والروسية والهندية.</p>
 <h2>معلومات إضافية</h2>
 <p>يرجى قراءة <a href="/ar/privacy/">سياسة الخصوصية</a> و<a href="/ar/terms/">شروط الاستخدام</a>.</p>
 <div class="ad-slot" hidden data-mobile="300x250" style="margin:28px auto;text-align:center"></div>
@@ -78,7 +80,7 @@ footer a{color:var(--muted);margin:0 8px}
 (function () {
   var slots = Array.prototype.slice.call(document.querySelectorAll('.ad-slot')); if (!slots.length) return;
   var L = (document.documentElement.lang || 'en').slice(0, 2);
-  var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade' };
+  var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade', ru: 'Реклама', hi: 'विज्ञापन' };
   var label = A[L] || A.en;
   function visible(slot) { return !slot.closest('section[hidden]'); }
   function clear(slot) { slot.textContent = ''; slot.hidden = true; }

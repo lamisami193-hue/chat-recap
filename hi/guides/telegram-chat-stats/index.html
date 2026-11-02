@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="hi" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-src https://chat-recap.pages.dev; script-src 'unsafe-inline' https://www.googletagmanager.com; style-src 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<title>टेलीग्राम चैट स्टैट्स: सबसे ज़्यादा कौन बोलता है? | TG Wrapped</title>
+<meta name="description" content="जानिए टेलीग्राम चैट में सबसे ज़्यादा कौन बोलता है, बातचीत कौन शुरू करता है, जवाब कितनी जल्दी आते हैं और कौन सा समय सबसे व्यस्त रहता है, वह भी निजी तौर पर आपके ब्राउज़र में।">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="canonical" href="https://tgwrapped.devs.surf/hi/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="en" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="ar" href="https://tgwrapped.devs.surf/ar/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="es" href="https://tgwrapped.devs.surf/es/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="fr" href="https://tgwrapped.devs.surf/fr/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="pt" href="https://tgwrapped.devs.surf/pt/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="ru" href="https://tgwrapped.devs.surf/ru/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="hi" href="https://tgwrapped.devs.surf/hi/guides/telegram-chat-stats/">
+<link rel="alternate" hreflang="x-default" href="https://tgwrapped.devs.surf/guides/telegram-chat-stats/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://tgwrapped.devs.surf/hi/guides/telegram-chat-stats/">
+<meta property="og:title" content="टेलीग्राम चैट स्टैट्स: सबसे ज़्यादा कौन बोलता है?">
+<meta property="og:description" content="जानिए टेलीग्राम चैट में सबसे ज़्यादा कौन बोलता है, बातचीत कौन शुरू करता है, जवाब कितनी जल्दी आते हैं और कौन सा समय सबसे व्यस्त रहता है, वह भी निजी तौर पर आपके ब्राउज़र में।">
+<meta property="og:site_name" content="TG Wrapped">
+<meta property="og:image" content="https://tgwrapped.devs.surf/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TG Wrapped: Telegram chat stats as shareable story cards">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tgwrapped.devs.surf/og-image.png">
+<style>
+:root{--bg:#0b0f1a;--panel:#141a2b;--text:#eef1ff;--muted:#9aa3c7;--a1:#7c5cff;--a2:#ff5c8a;--r:16px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic","Noto Sans","Noto Sans Devanagari","Nirmala UI","Mangal",Arial,sans-serif;line-height:1.65}
+body{min-height:100vh;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;max-width:820px;width:100%;margin:0 auto}
+.brand{font-weight:800;letter-spacing:.3px;font-size:20px;text-decoration:none;background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.back{color:var(--muted);font-size:14px;text-decoration:none}
+.back:hover,.back:focus-visible{color:var(--text);text-decoration:underline}
+main{flex:1;width:100%;max-width:820px;margin:0 auto;padding:8px 16px 40px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:18px 0 6px}
+h2{font-size:20px;margin:28px 0 8px}
+p,li{color:#cfd5f2}
+.upd{color:var(--muted);font-size:14px;margin:0 0 18px}
+.panel{background:var(--panel);border-radius:var(--r);padding:14px 18px;margin:16px 0;border:1px solid rgba(61,220,151,.35)}
+.panel p{margin:0}
+a{color:#b9a8ff}
+ul{padding-inline-start:22px}
+footer{max-width:820px;width:100%;margin:0 auto;padding:18px 16px 28px;color:var(--muted);font-size:13px;text-align:center}
+footer a{color:var(--muted);margin:0 8px}
+.cta{display:inline-block;margin:10px 0;padding:13px 20px;border-radius:12px;color:#fff;text-decoration:none;font-weight:700;background:linear-gradient(90deg,var(--a1),var(--a2))}
+code{background:#1b2340;padding:1px 6px;border-radius:6px}
+ol,ul{color:#cfd5f2}
+.cards{display:grid;gap:12px;margin:16px 0}
+.card{display:block;background:var(--panel);border-radius:var(--r);padding:14px 18px;text-decoration:none;border:1px solid #2c3770}
+.card strong{display:block;color:var(--text);font-size:18px}
+.card span{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body data-guide="telegram-chat-stats">
+<header class="top">
+  <a class="brand" href="/hi/">TG Wrapped</a>
+  <a class="back" href="/hi/">&larr; टूल पर वापस जाएँ</a>
+</header>
+<main>
+<h1>आपकी टेलीग्राम चैट में सबसे ज़्यादा कौन बोलता है?</h1>
+<p>टेलीग्राम एक्सपोर्ट में हर संदेश भेजने वाले और समय के साथ दर्ज होता है। इतना काफ़ी है उन सवालों के जवाब पाने के लिए जो ऐप खुद नहीं दिखाता। TG Wrapped उस फ़ाइल को कार्ड में बदल देता है।</p>
+<div class="ad-slot" hidden data-mobile="300x250" style="margin:18px auto;text-align:center"></div>
+<h2>आप क्या पता लगा सकते हैं</h2>
+<ul>
+<li><strong>सबसे ज़्यादा कौन बोलता है:</strong> हर व्यक्ति के संदेश और चैट में उसका हिस्सा।</li>
+<li><strong>बातचीत कौन शुरू करता है:</strong> कुछ देर की शांति के बाद हर व्यक्ति ने कितनी बार सबसे पहले लिखा।</li>
+<li><strong>आम जवाब का समय:</strong> कोई आम तौर पर जवाब देने में कितना समय लेता है। यह तभी दिखता है जब जवाब इतने हों कि संख्या का कोई मतलब बने।</li>
+<li><strong>सबसे लंबी चुप्पी और सबसे लंबा सिलसिला:</strong> दो संदेशों के बीच सबसे बड़ा अंतर, और लगातार सबसे ज़्यादा दिन जब आपने एक-दूसरे को लिखा।</li>
+<li><strong>सबसे व्यस्त घंटा और वार</strong>, और रात में कितने संदेश भेजे गए।</li>
+<li><strong>सबसे ज़्यादा इस्तेमाल हुए शब्द और इमोजी</strong>, साथ में वॉइस मैसेज, स्टिकर, फ़ोटो और दूसरी फ़ाइलों की गिनती।</li>
+</ul>
+<h2>अपने आँकड़े कैसे पाएँ</h2>
+<ol>
+<li><a href="/hi/guides/export-telegram-chat-json/">चैट को JSON में एक्सपोर्ट करें</a>।</li>
+<li>TG Wrapped खोलें और <code>result.json</code> को पेज पर छोड़ दें।</li>
+<li>चैट और साल चुनें।</li>
+<li>कार्ड बनाएँ और उन्हें डाउनलोड करें।</li>
+</ol>
+<h2>नतीजे कैसे पढ़ें</h2>
+<p>छोटी चैट में आँकड़े स्थिर नहीं होते: बहुत कम संदेशों पर टिका जवाब का समय ज़्यादा कुछ नहीं बताता। आँकड़े सिर्फ़ वही दिखाते हैं जो एक्सपोर्ट में है, इसलिए जो चैट आंशिक रूप से मिटाई गई हो, या सीमित समय के लिए एक्सपोर्ट की गई हो, वह छोटी दिखेगी।</p>
+<h2>शेयर करना</h2>
+<p>कार्ड में नाम हो सकते हैं। ग्रुप चैट शेयर करने से पहले नाम छिपाने वाला विकल्प चालू करें और उसमें शामिल दूसरे लोगों के बारे में सोचें।</p>
+<p><a id="cta" class="cta" href="/hi/">अपना टेलीग्राम रैप्ड बनाएँ</a></p>
+<p>यह भी पढ़ें: <a href="/hi/guides/export-telegram-chat-json/">टेलीग्राम चैट को JSON में एक्सपोर्ट कैसे करें</a></p>
+<div class="ad-slot" hidden data-mobile="300x250" style="margin:28px auto 8px;text-align:center"></div>
+</main>
+<footer>
+  <nav><a href="/hi/about/">हमारे बारे में</a> · <a href="/hi/privacy/">गोपनीयता नीति</a> · <a href="/hi/terms/">उपयोग की शर्तें</a> · <a href="/hi/guides/">गाइड</a></nav>
+  <p>यह साइट टेलीग्राम से जुड़ी नहीं है। आपका डेटा आपके डिवाइस पर ही रहता है।</p>
+</footer>
+<script>
+(function(){var ID='G-N6T6E3DRT6';window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',ID,{anonymize_ip:true});var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(ID);document.head.appendChild(s);var c=document.getElementById('cta');if(c)c.addEventListener('click',function(){gtag('event','guide_cta_click',{guide:document.body.getAttribute('data-guide')||'hub'})});})();
+</script>
+<script>
+/* Ads run in frames served from a different domain (chat-recap.pages.dev), so they cannot read this page. A slot loads only while it is visible. */
+(function () {
+  var slots = Array.prototype.slice.call(document.querySelectorAll('.ad-slot')); if (!slots.length) return;
+  var L = (document.documentElement.lang || 'en').slice(0, 2);
+  var A = { en: 'Advertisement', ar: 'إعلان', es: 'Publicidad', fr: 'Publicité', pt: 'Publicidade', ru: 'Реклама', hi: 'विज्ञापन' };
+  var label = A[L] || A.en;
+  function visible(slot) { return !slot.closest('section[hidden]'); }
+  function clear(slot) { slot.textContent = ''; slot.hidden = true; }
+  function show(slot) {
+    if (slot.firstChild) return;
+    var wide = window.innerWidth >= 768, size = wide ? '728x90' : (slot.getAttribute('data-mobile') || '300x250');
+    var wh = size.split('x');
+    var lab = document.createElement('div'); lab.textContent = label;
+    lab.style.cssText = 'font-size:11px;color:#9aa3c7;text-align:center;margin-bottom:4px';
+    var f = document.createElement('iframe');
+    f.src = 'https://chat-recap.pages.dev/ads/' + size + '.html'; f.width = wh[0]; f.height = wh[1]; f.title = label; f.loading = 'lazy';
+    f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox');
+    f.setAttribute('referrerpolicy', 'origin');
+    f.style.cssText = 'border:0;max-width:100%;display:block;margin:0 auto';
+    slot.appendChild(lab); slot.appendChild(f); slot.hidden = false;
+  }
+  function sync() { slots.forEach(function (s) { if (visible(s)) show(s); else clear(s); }); }
+  sync();
+  if (window.MutationObserver) {
+    var o = new MutationObserver(sync);
+    Array.prototype.forEach.call(document.querySelectorAll('main section[id^="s-"]'), function (sec) { o.observe(sec, { attributes: true, attributeFilter: ['hidden'] }); });
+  }
+})();
+</script>
+</body>
+</html>
